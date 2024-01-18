@@ -3,8 +3,9 @@ layout: post
 title: Bousfield Localization of Spectra
 date: 2020-05-04
 description: math blog post about the bousfield localization of spectra
-tags: math, algebraic topology
+tags: math
 categories: math
+giscus_comments: true
 related_posts: false
 toc:
     beginning: true
