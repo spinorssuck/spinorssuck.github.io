@@ -5,8 +5,9 @@ date: 2020-05-04
 description: math blog post about the bousfield localization of spectra
 tags: math
 categories: math
-giscus_comments: true
+giscus_comments: false
 related_posts: false
+featured: true
 toc:
     beginning: true
 ---
@@ -72,3 +73,6 @@ A subspectrum $$ B$$ of a CW spectrum $$ X$$ is closed if $$ B$$ is a union of c
 We know that if $$ X$$ is a topological space, then there exists a CW-Complex $$ \Gamma X$$ and a homotopy equivalence $$ \Gamma X \simeq X$$.
 
 This extends as follows:
+
+### CW Approximation for Sequential Spectra
+> Let $$ X $$ be a sequential spectrum then there exists a CW-Spectrum $$ \Gamma X $$ such that there is a weak homotopy equivalence between $$ \Gamma X $$ and $$ X $$.
