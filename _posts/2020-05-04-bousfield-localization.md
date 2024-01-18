@@ -5,9 +5,9 @@ date: 2020-05-04
 description: math blog post about the bousfield localization of spectra
 tags: math, algebraic topology
 categories: math
-related_posts = false
+related_posts: false
 toc:
-    beginning = true
+    beginning: true
 ---
 
 This post is organized as a part of the UT Austin Spring 2020 DRP program.I'd like to thank my mentor Richard Wong for useful directions throughout the semester and introducing me to much of the foundational material in homotopy theory.
