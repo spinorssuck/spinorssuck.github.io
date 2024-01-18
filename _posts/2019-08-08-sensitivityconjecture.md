@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Monads I, The Eilenberg-Moore category, Adjunction and Kleisli categories
+title: The Sensitivity Conjecture
 date: 2020-03-28
-description: An introduction to Monads and the Eilenberg-Moore category
+description: an introduction to the recently proven sentitivity conjecture
 tags: math
 categories: math
 giscus_comments: false
