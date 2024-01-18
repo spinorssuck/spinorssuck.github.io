@@ -52,14 +52,9 @@
             {%- endif -%}
           {%- endif -%}
           {%- assign coauthor_url = nil -%}
-<<<<<<< HEAD
-          {%- if site.data.coauthors[author_last_name] -%}
-            {%- for coauthor in site.data.coauthors[author_last_name] -%}
-=======
           {%- assign clean_last_name = author_last_name | downcase | remove_accents -%}
           {%- if site.data.coauthors[clean_last_name] -%}
             {%- for coauthor in site.data.coauthors[clean_last_name] -%}
->>>>>>> e44ae0c4fac09f8e6d72301f916e696f16a9d8d3
               {%- if coauthor.firstname contains author.first -%}
                 {%- assign coauthor_url = coauthor.url -%}
                 {%- break -%}

@@ -17,7 +17,7 @@ This post will be organized as follows:
 
 First, I'll present the basic definitions of the topic(spectra, homotopy groups,CW-spectra,triangulated categories etc).
 
-Second, I';ll introduce finite spectra, $$ Z_{p}$$-localization of spectra aka. p-local spectra via Bousfield localization, thick subcategories.
+Second, I';ll introduce finite spectra, $$ Z_{p} $$-localization of spectra aka. p-local spectra via Bousfield localization, thick subcategories.
 
 Third, I'll discuss the the Thick Subcategory Theorem but avoid technical details.
 
