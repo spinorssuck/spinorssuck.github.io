@@ -30,7 +30,7 @@ Quite simply, one trivially gets that this requires  $$ O(|G|^{2}) $$ operations
 
 Throughout the post, let  $$ \omega $$ be the exponent of matrix multiplication(currently it is around 2.38 I guess).
 
-The main result is that Chris Umans achieves an operation complexity of  $$ O(|G|^{\frac{\omega}{2}} $$. Some basic facts from representation theory will be used throughout though I guess most readers would already be familiar with that. For example, it is easy to prove that through the Schur orthogonality relations is that  $$ \sum\limits_{i} |V_{i}|^{2}=|G| $$ where the  $$ V_{i} $$ is the set of all irreducible representations of  $$ G $$. This gives us the useful lemma.
+The main result is that Chris Umans achieves an operation complexity of  $$ O(|G|^{\frac{\omega}{2}}) $$. Some basic facts from representation theory will be used throughout though I guess most readers would already be familiar with that. For example, it is easy to prove that through the Schur orthogonality relations is that  $$ \sum\limits_{i} |V_{i}|^{2}=\lvert G \rvert $$ where the  $$ V_{i} $$ is the set of all irreducible representations of  $$ G $$. This gives us the useful lemma.
 
 ## Lemma 1
 
@@ -40,7 +40,7 @@ Some facts about the induced representation and Clifford theory are used but it 
 
 ## The Support Trick
 
-Let  $$ G $$ be a group and  $$ S $$, a subset. Let's assume that we can caluclate the generalized DFT with respect to  $$ G $$ for all inputs  $$ \alpha \in \mathbb{C}[G] $$ supported on  $$ S $$(i.e components  $$ \alpha_{g}=0 $$ for  $$ g \not\in S $$) in  $$ m $$ operations. Surely, with some extra computational cost(involving the index of  $$ S $$), one can extend this to all inputs because if we can compute DFT supported on  $$ S $$ then we can compute DFT supported on  $$ Sg' $$ by multiplying   $$ \sum\limits_{g} \alpha(g) \bigoplus_{\rho \in Irr(G)}\rho(g) $$ by  $$ \bigoplus_{\rho \in Irr(G)} \rho(g') $$ which has an additional operation cost of  $$ \sum\limits_{\rho \in Irr(G)} O(dim(\rho)^{\omega+\epsilon} $$. We can apply Lemma 1,take appropriate number of 'shifts/translates' by elements of  $$ G $$ to get the following result(see Section 2.3):
+Let  $$ G $$ be a group and  $$ S $$, a subset. Let's assume that we can caluclate the generalized DFT with respect to  $$ G $$ for all inputs  $$ \alpha \in \mathbb{C}[G] $$ supported on  $$ S $$(i.e components  $$ \alpha_{g}=0 $$ for  $$ g \not\in S $$) in  $$ m $$ operations. Surely, with some extra computational cost(involving the index of  $$ S $$), one can extend this to all inputs because if we can compute DFT supported on  $$ S $$ then we can compute DFT supported on  $$ Sg' $$ by multiplying   $$ \sum\limits_{g} \alpha(g) \bigoplus_{\rho \in Irr(G)}\rho(g) $$ by  $$ \bigoplus_{\rho \in Irr(G)} \rho(g') $$ which has an additional operation cost of  $$ \sum\limits_{\rho \in Irr(G)} O(dim(\rho)^{\omega+\epsilon}) $$. We can apply Lemma 1,take appropriate number of 'shifts/translates' by elements of  $$ G $$ to get the following result(see Section 2.3):
 
 ## Theorem 1
 
@@ -52,7 +52,7 @@ The aim is to use the subgroup structure in an attempt to reduce the operation c
 
 ## The Subgroup Reduction
 
-The initial results by Beth and Clausen on this topic dealt with the technique of single subgroup reduction. Let  $$ H \leq G $$ be a subgroup. The main idea is that we calculate  $$ |G:H| $$ many DFTs with respect to  $$ H $$ and lift all these to  $$ G $$ recursively. Note that any irreducible representation  $$ \sigma \in Irr(H) $$ can be obtained as a restriction of an irreducible representation  $$ \rho \in Irr(G) $$.
+The initial results by Beth and Clausen on this topic dealt with the technique of single subgroup reduction. Let  $$ H \leq G $$ be a subgroup. The main idea is that we calculate  $$ \lvert G:H \rvert  $$ many DFTs with respect to  $$ H $$ and lift all these to  $$ G $$ recursively. Note that any irreducible representation  $$ \sigma \in Irr(H) $$ can be obtained as a restriction of an irreducible representation  $$ \rho \in Irr(G) $$.
 
 To elaborate on this, let  $$ g_{1},\cdots,g_{t} $$ be the right coset representatives of  $$ H $$ in  $$ G $$. For any  $$ \alpha \in \mathbb{C}[G] $$, we can write  $$ \alpha=\sum\limits_{g \in G}\alpha_{g}g $$ as
 
@@ -66,21 +66,21 @@ There are  $$ t $$ matrix multiplications of block-diagonal matrices and hence i
 
  $$ \sum\limits_{\sigma \in Irr(H)} \sum\limits_{\rho \in Irr(G)} d(\sigma,\rho) O(dim(\sigma)^{\omega+\epsilon}) \frac{dim(\rho)}{dim(\sigma)} $$ which evaluates to  $$ \sum\limits_{\sigma \in Irr(H)} O(dim(\sigma)^{omega+\epsilon})[G:H] $$ through Frobenius reciprocity, specifically we see that  $$ \sum_{\rho \in Irr(G)} d(\sigma,\rho) dim(\rho) $$ is the dimension of  $$ Ind_{H}^{G}(\sigma) $$. See Theorem 3 of this paper.
 
-Now, we do  $$ [G:H]=t $$ of these multiplications followed by taking the sum which involves  $$ [G:H]|G| $$ operations since there are atmost  $$ |G| $$ non-zero entries in the block diagonals(note that this follows from sum-of-squares equation in the introduction). So, the total cost is
+Now, we do  $$ [G:H]=t $$ of these multiplications followed by taking the sum which involves  $$ [G:H] \lvert G \rvert $$ operations since there are atmost  $$ \lvert G \rvert $$ non-zero entries in the block diagonals(note that this follows from sum-of-squares equation in the introduction). So, the total cost is
 
- $$ [G:H]|G|+[G:H]^{2}\sum\limits_{\sigma \in Irr(H)} O(dim(\sigma)^{\omega+\epsilon}) $$. Using Lemma 1(see proof below), we get the following theorem
+ $$ [G:H] \lvert G \rvert+[G:H]^{2}\sum\limits_{\sigma \in Irr(H)} O(dim(\sigma)^{\omega+\epsilon}) $$. Using Lemma 1(see proof below), we get the following theorem
 
 ## Theorem 2
 
-Let  $$ H \leq G $$ be a subgroup, then one can compute a DFT with respect to  $$ G $$ in operation count of  $$ [G:H] $$ DFTs with respect to  $$ H $$ plus  $$ O([G:H]^{2}|H|^{\frac{\omega}{2}+\epsilon} $$
+Let  $$ H \leq G $$ be a subgroup, then one can compute a DFT with respect to  $$ G $$ in operation count of  $$ [G:H] $$ DFTs with respect to  $$ H $$ plus  $$ O([G:H]^{2} \lvert H \rvert^{\frac{\omega}{2}+\epsilon}) $$
 
 ### Proof of Theorem 2:
 
-We've got most of it down. Since  $$ \omega>2 $$, we can use Lemma 1, to get the upper bound  $$ \sum_{\sigma \in Irr(H)} sim(\sigma)^{\omega+\epsilon} \leq |H|^{\frac{\omega}{2}+\epsilon} $$. Now  $$\frac{\omega}{2} >1 $$, so we the upper bound  $$ [G:H]|G|=[G:H]^{2}|H|\leq [G:H]|H|^{\frac{\omega}{2}+\epsilon} $$, this gives as a  $$ O([G:H]^{2}|H|^{\frac{\omega}{2}+\epsilon}) $$ upper bound on the total cost calculated above.
+We've got most of it down. Since  $$ \omega>2 $$, we can use Lemma 1, to get the upper bound  $$ \sum_{\sigma \in Irr(H)} sim(\sigma)^{\omega+\epsilon} \leq \lvert H \rvert^{\frac{\omega}{2}+\epsilon} $$. Now  $$\frac{\omega}{2} >1 $$, so we the upper bound  $$ [G:H]\lvert G \rvert=[G:H]^{2}\lvert H \rvert \leq [G:H] \lvert H \rvert^{\frac{\omega}{2}+\epsilon} $$, this gives as a  $$ O([G:H]^{2}\lvert H \rvert^{\frac{\omega}{2}+\epsilon}) $$ upper bound on the total cost calculated above.
 
 The remaining problem is that we have not stipulated a  $$ H- $$adapted basis. We can convert an arbitrary basis to an  $$ H- $$adapted basis at a cost of  $$ \sum_{\rho \in Irr(G)} O(dim(\rho)^{\omega+\epsilon}) \leq O(|G|^{\frac{\omega}{2}+\epsilon}) using Lemma 1. This is the same bound as the one above for the total cost which proves the theorem.
 
-Using this result, it is not too hard(again, see Theorem 5 of the paper) to get the weaker  $$ 1+\frac{\omega}{4} $$ bound for generalized DFT using induction and Lev's theorem(which guarantees the existence of a subgroup of order atleast  $$ |G|^{\frac{1}{2}} $$)
+Using this result, it is not too hard(again, see Theorem 5 of the paper) to get the weaker  $$ 1+\frac{\omega}{4} $$ bound for generalized DFT using induction and Lev's theorem(which guarantees the existence of a subgroup of order atleast  $$ \lvert G \rvert^{\frac{1}{2}} $$)
 
 ## Double Subgroup Reduction
 
@@ -88,19 +88,19 @@ If  $$ H,K \leq G $$ are two subgroups, we reduce the problem of computing the D
 
 It is quite easy to see that  $$ H,K $$ are subgroups of  $$ G $$ and  $$ \alpha \in \mathbb{C}[G] $$ supported on  $$ HK $$ and given a fixed way of expressing every  $$ g \in HK $$ as  $$ g=hk $$(not necessarily unique), then one can compute:
 
- $$ \sum\limits_{g=hk \in HK}\alpha_{g} \bigoplus_{\sigma \in Irr(H),\tau \in Irr(K)}\sigma(g) \otimes \tau(g) $$ with  $$ |H| $$ K-DFTs and  $$ |K| $$ H-DFTs.
+ $$ \sum\limits_{g=hk \in HK}\alpha_{g} \bigoplus_{\sigma \in Irr(H),\tau \in Irr(K)}\sigma(g) \otimes \tau(g) $$ with  $$ \lvert H \rvert $$ K-DFTs and  $$ \lvert K \rvert $$ H-DFTs.
 
-The extra computation cost is proportional to  $$ \frac{|G|}{|HK|} $$ and  $$ |H \cap K $$(roughly if one assumes  $$ \omega $$ is close to  $$ 2 $$). The details can be found in either of the papers. This  $$ HK $$ can be translates appropriately(through a probabilistic argument) to get the overhead cost(which will naturally include a  $$ log(|G|) $$ factor). This prevents the pure  $$ \frac{\omega}{2} $$ exponent that is the ultimate goal. This is dealt with using the new technique of 'Triple subgroup reduction' which I'll discuss shortly. I'll state the main theorem for the double subgroup reduction method below:
+The extra computation cost is proportional to  $$ \frac{\lvert G \rvert}{\lvert HK \rvert} $$ and  $$ |H \cap K $$(roughly if one assumes  $$ \omega $$ is close to  $$ 2 $$). The details can be found in either of the papers. This  $$ HK $$ can be translates appropriately(through a probabilistic argument) to get the overhead cost(which will naturally include a  $$ log(\lvert G \rvert) $$ factor). This prevents the pure  $$ \frac{\omega}{2} $$ exponent that is the ultimate goal. This is dealt with using the new technique of 'Triple subgroup reduction' which I'll discuss shortly. I'll state the main theorem for the double subgroup reduction method below:
 
 ## Theorem 3:
 
 If  $$ H,K \leq G $$ then the total cost of computing a DFT with respect to  $$ G $$ is
 
-O((|H| K-DFTs+|K| H-DFTs+ $$ |G|^{\frac{\omega}{2}+\epsilon}+(|H||K|)^{\frac{\omega}{2}}\frac{|G|}{|HK|}log(|G|)) $$
+$$ O( \lvert H \rvert K-DFTs+\lvert K\rvert) $$ H-DFTs+ $$ |G|^{\frac{\omega}{2}+\epsilon}+(\lvert H \rvert \lvert K \rvert)^{\frac{\omega}{2}}\frac{\lvert G \rvert}{\lvert HK \rvert}log(\lvert G \rvert))) $$
 
 (Proof ommited. See section 3(Theorem 12) of this paper by Umans.)
 
-So, to reiterate, the H K-DFTs +K H-DFTs part is obtained through the simple procedure sketched out in the start of this section. The outer  $$ \frac{|G|}{|HK|}log(|G|) $$ is obtained through a simple probabilistic argument of sliding  $$ HKx $$-DFTs with respect to coset representatives  $$ x \in [G:HK] $$. The remaining quantity comes from a series of matrix multiplication and change of basis matrices.
+So, to reiterate, the H K-DFTs +K H-DFTs part is obtained through the simple procedure sketched out in the start of this section. The outer  $$ \frac{\lvert G \rvert}{\lvert HK \rvert}log(\lvert G \rvert) $$ is obtained through a simple probabilistic argument of sliding  $$ HKx $$-DFTs with respect to coset representatives  $$ x \in [G:HK] $$. The remaining quantity comes from a series of matrix multiplication and change of basis matrices.
 
 Umans obtains the golden  $$ \frac{\omega}{2} $$ exponent for solvable groups and finite groups of Lie type through this technique.
 
@@ -125,7 +125,7 @@ Let  $$ \rho \in Irr(G) $$. Then,
 Proof omitted(see wiki)
 
 
-Some stronger divisibility statements could be made on  $$ e_{\rho} $$ and the orbit size  $$ |O_{i_{\rho}}| $$ but it doesn't really matter in our case.
+Some stronger divisibility statements could be made on  $$ e_{\rho} $$ and the orbit size  $$ O_{i_{\rho}} $$ but it doesn't really matter in our case.
 
 What is really important is that for  $$ \rho \in Irr(G),Res_{N}^{G}(\rho) $$ is completely determined(upto constant) by the orbit  $$ O_{i_{\rho}} $$. Thus, we can partition  $$ Irr(G) $$ into  $$ [S_{k}] $$ where  $$ k $$ corresponds to  $$ O_{k} $$. Through a simple calculation(see below), we get the following useful lemma.
 
@@ -137,7 +137,7 @@ What is really important is that for  $$ \rho \in Irr(G),Res_{N}^{G}(\rho) $$ is
 
 By definition of the induced representation  $$ Ind_{N}^{G}(\sigma),dim(Ind_{N}^{G}(\sigma))=dim(\sigma)\frac{|G|}{|N|} $$. For  $$ \rho \in Irr(G) $$,let  $$ q(\rho,\sigma) $$ be the number of times  $$ \rho $$ appears in  $$ Ind_{N}^{G}(\sigma) $$, then by decomposition into irreducibles, we get:
 
- $$ \sum\limits_{\rho \in Irr(G)} dim(\rho)q(\rho,sigma)=dim(\sigma)\frac{|G|}{|N|} $$
+ $$ \sum\limits_{\rho \in Irr(G)} dim(\rho)q(\rho,sigma)=dim(\sigma)\frac{\lvert G \rvert}{\\lvert N \rvert} $$
 
 Using Frobenius reciprocity,  $$ q(\rho,\sigma)=d(\sigma,\rho) $$(number of times  $$ \sigma $$ appears in  $$ Res_{N}^{G}(\rho) $$). Notice that this  $$ d(\sigma,\rho) $$ is exactly  $$ e_{\rho} $$. The terms in the sum not in the associated orbit become zero and the result follows.
 
@@ -151,7 +151,7 @@ Thankfully, the DFT calculation has a relatively easy computational count from t
 
 ## Lemma 3(Inverse DFT theorem)
 
-If the DFT with respect to  $$ G $$ can be computed in  $$ m $$ operations then the inverse DFT with respect to  $$ G $$, in the same basis, can be computed in atmost  $$ m+|G| $$ operations.
+If the DFT with respect to  $$ G $$ can be computed in  $$ m $$ operations then the inverse DFT with respect to  $$ G $$, in the same basis, can be computed in atmost  $$ m+\lvert G \rvert $$ operations.
 
 Proof omitted(see Theorem 2.6 from the paper)
 
@@ -167,17 +167,17 @@ Proof is omitted. It is slightly fun to work it out though. See Lemma 7 from the
 
 ## Theorem 5:
 
-Let  $$ N \unlhd G $$ and for any  $$ \rho \in Irr(G) $$,  $$ d_{\rho},e_{\rho} $$ be the associated quantities obtained from Clifford's theorem. For any  $$ M=\bigoplus_{\rho \in Irr(G)} M^{\rho} $$(where  $$ M^{\rho} $$ is a  $$ dim(\rho) $$-order square matrix), there exists, with respect to an  $$ N- $$adapted basis, matrices  $$ M_{n}^{\rho} $$ of size  $$ dim(\rho)/d_{\rho} \times e_{\rho} $$ which satisfies:
+Let  $$ N \unlhd G $$ and for any  $$ \rho \in Irr(G) $$,  $$ d_{\rho},e_{\rho} $$ be the associated quantities obtained from Clifford's theorem. For any  $$ M=\bigoplus_{\rho \in Irr(G)} M^{\rho} $$(where  $$ M^{\rho} $$ is a  $$ dim(\rho) $$-order square matrix), there exists, with respect to an  $$ N- $$adapted basis, matrices  $$ M_{n}^{\rho} $$ of size  $$ dim((\rho)/d_{\rho} \times e_{\rho}) $$ which satisfies:
 
- $$ \sum\limits_{n \in N} (M_{n}^{\rho} \otimes \underbrace{(I_{d_{\rho}}|\cdots|I_{d_{rho}}}_{|O_{i_{\rho}}|}).\rho(n)=M^{\rho} $$(note that  $$ A|B $$ is row notation,i.e  $$ A,B $$ are rows).
+ $$ \sum\limits_{n \in N} (M_{n}^{\rho} \otimes \underbrace{(I_{d_{\rho}}|\cdots \lvert I_{d_{rho}}}_{O_{i_{\rho}}}) \rvert.\rho(n)=M^{\rho} $$(note that  $$ A \lvert B $$ is row notation,i.e  $$ A,B $$ are rows).
 
-where the matrix  $$ I_{d_{\rho}}|\cdots|I_{d_{rho}} $$ has size  $$ d_{\rho} \times \frac{dim(\rho)}{e_{\rho}} $$
+where the matrix  $$ I_{d_{\rho}} \lvert \cdots \rvert I_{d_{rho}} $$ has size  $$ d_{\rho} \times \frac{dim(\rho)}{e_{\rho}} $$
 
 Moreover, these  $$ M_{n}^{\rho} $$ can be chosen in such that there exist unique labellings  $$ \beta^{l} $$ for each  $$ l $$ of the entries of the set of matrices  $$ M_{n}^{\rho} $$ for all  $$ \rho \in S_{l} $$ such that if
 
  $$ \beta_{\rho_{1};i,j}^{l}=\beta_{\rho_{2};i,j}^{l'} \Rightarrow M_{n;i,j}^{\rho_{1}}=M_{n;i,j}^{\rho_{2}} $$ for all  $$ n \in N $$(here,  $$ \beta_{\rho;i,j}^{l} $$ represents the  $$ (i,j) $$ entry of the matrix  $$ M_{n}^{\rho} $$ where  $$ \rho \in S_{l} $$)
 
-the number of labels(unique by definition) is  $$ r=O(|G/N|log(|G/N|) $$. Additionally, these  $$ M_{n}^{\rho} $$ can be obtained  $$ r $$ DFTs with respect to  $$ N $$.
+the number of labels(unique by definition) is  $$ r=O(\lvert G/N \rvert log(\lvert G/N \rvert)) $$. Additionally, these  $$ M_{n}^{\rho} $$ can be obtained  $$ r $$ DFTs with respect to  $$ N $$.
 
 ### Proof of Theorem 5:
 
@@ -185,23 +185,22 @@ Phew!That's quite a long statement. The last paragraph of the statement is a kin
 
 Since we have an  $$ N- $$adapted basis, the  $$ \rho(n) $$ is of the form  $$ I_{e_{\rho}} \otimes \bigoplus_{\lambda \in O_{l}} \lambda(n) $$.We'll solve for  $$ M_{n}^{\rho} $$ by a sequence of steps:
 
-First, we have  $$ \sum\limits_{n \in N} (M_{n}^{\rho} \otimes \underbrace{(I_{d_{\rho}}|\cdots|I_{d_{rho}})}_{|O_{i_{\rho}}|}. \rho(n)=\sum\limits_{n \in N} M_{n}^{\rho} \otimes (\lambda_{1}|\cdots|\lambda_{|O_{l}|}) $$
+First, we have  $$ \sum\limits_{n \in N} (M_{n}^{\rho} \otimes \underbrace{(I_{d_{\rho}}|\cdots \vert I_{d_{rho}})}_{ \lvert O_{i_{\rho}} \rvert}. \rho(n)=\sum\limits_{n \in N} M_{n}^{\rho} \otimes (\lambda_{1} \vert \cdots|\lambda_{|O_{l}|}) $$
 
 Note that the  $$ \lambda_{i} $$ above span the entire vector space  $$ \mathbb{C}^{d_{\rho} \times \frac{dim(\rho)}{e_{\rho}}} $$. I leave it to the reader to verify that the equation
 
- $$ \sum\limits_{n \in N} M_{n;i,j}^{\rho}(\lambda_{1}|\cdots|\lambda_{|O_{l}|})=
+ $$ \sum\limits_{n \in N} M_{n;i,j}^{\rho}(\lambda_{1} \lvert \cdots \rvert \lambda_{\lvert O_{l} \rvert})=$$
 
-\begin{bmatrix}
+$$ \begin{bmatrix}
 
-M_{i,j.|O_{l}|}^{\rho} \\
+M_{i,j.\lvert O_{l} \rvert}^{\rho} \\
 
 \vdots \\
 
-M_{i,j.|O_{l}|+|O_{l}|-1}
+M_{i,j.\lvert O_{l} \rvert+\lvert O_{l} \rvert-1}
 
 \end{bmatrix}
-
- $$
+$$
 
 (*)
 
@@ -209,9 +208,9 @@ can be solved for  $$ M_{n}^{\rho} $$ for all  $$ \rho \in Irr(G) $$(note that t
 
 Now, to deal with the last paragraph of the statement. The important thing is the number  $$ r $$. Assume for now that such a labelling exists(we'll show what it is after that). I'd like to pass off a few comments as to what is going on before proceeding.
 
-Trivially , we can take  $$ \beta^{l} $$ to be a unique labelling for every  $$ \rho \in S_{l} $$ and obviously easily ensure that  $$ \beta^{l'} $$ is completely distinct for all  $$ \rho \in S_{l'} $$. This would be give a trivial  $$ r=|G/N|(\textbf{#} S_{k}) $$ from Lemma 2. The point is that we have to minimize this  $$ r $$ as we have to perform  $$ r $$ inverse DFTs(computationally almost as easy as DFT) with respect to  $$ N $$. Getting back into the proof,
+Trivially , we can take  $$ \beta^{l} $$ to be a unique labelling for every  $$ \rho \in S_{l} $$ and obviously easily ensure that  $$ \beta^{l'} $$ is completely distinct for all  $$ \rho \in S_{l'} $$. This would be give a trivial  $$ r=\lvert G/N \rvert (\textbf{#} S_{k}) $$ from Lemma 2. The point is that we have to minimize this  $$ r $$ as we have to perform  $$ r $$ inverse DFTs(computationally almost as easy as DFT) with respect to  $$ N $$. Getting back into the proof,
 
-It is actually simple, if the labelling  $$ \beta_{\rho_{1};i,j}^{l} $$ and  $$ \beta_{\rho_{2};i,j}^{l'} $$ are equal, say  $$ T $$(by the condition on the labellings, this means that the  $$ (i,j) $$ entry of  $$ M_{n}^{\rho_{1}} $$ and  $$ M_{n}^{\rho_{2}} $$ are equal where  $$ \rho_{1} \in S_{l} $$ and  $$ \rho_{2} \in S_{l'} $$), then the associated  $$ \lambda_{1},\cdots,\lambda_{|O_{l}|} $$ and  $$ \lambda_{1}^{'},\cdots,\lambda_{|O_{l'}|}^{'} $$ from the two equation of the form (*) above are distinct! Replace the  $$ M_{n;i,j}^{\rho} $$ by the label  $$ T=\beta_{\rho_{1};i,j}^{l}=\beta_{\rho_{2};i,j}^{l'} $$ and simply append the  $$ \lambda_{1}^{'},\cdots,\lambda_{|O_{l'}|}^{'} $$ to  $$ (\lambda_{1}|\cdots|\lambda_{|O_{l}|}) $$ and get  $$ T $$ by an inverse DFT with respect to  $$ N $$.
+It is actually simple, if the labelling  $$ \beta_{\rho_{1};i,j}^{l} $$ and  $$ \beta_{\rho_{2};i,j}^{l'} $$ are equal, say  $$ T $$(by the condition on the labellings, this means that the  $$ (i,j) $$ entry of  $$ M_{n}^{\rho_{1}} $$ and  $$ M_{n}^{\rho_{2}} $$ are equal where  $$ \rho_{1} \in S_{l} $$ and  $$ \rho_{2} \in S_{l'} $$), then the associated  $$ \lambda_{1},\cdots,\lambda_{|O_{l}|} $$ and  $$ \lambda_{1}^{'},\cdots,\lambda_{|O_{l'}|}^{'} $$ from the two equation of the form (*) above are distinct! Replace the  $$ M_{n;i,j}^{\rho} $$ by the label  $$ T=\beta_{\rho_{1};i,j}^{l}=\beta_{\rho_{2};i,j}^{l'} $$ and simply append the  $$ \lambda_{1}^{'},\cdots,\lambda_{\lvert O_{l'} \rvert}^{'} $$ to  $$ (\lambda_{1}|\cdots|\lambda_{\lvert O_{l} \rvert}) $$ and get  $$ T $$ by an inverse DFT with respect to  $$ N $$.
 
 Hence, we need only  $$ r $$ DFTs with respect to  $$ N $$ to get the matrices  $$ M_{n}^{\rho} $$ for all  $$ n \in N $$ and  $$ \rho \in Irr(G) $$ if we have such a labelling.
 
@@ -219,17 +218,17 @@ What's the labelling:
 
 Consider any random block-diagonal matrix  $$ W $$ of the form:
 
- $$ 2|G/N| $$ block matrices of order  $$ 1 $$
+ $$ 2\lvert G/N \rvert $$ block matrices of order  $$ 1 $$
 
- $$ \lceil 2\frac{|G/N|}{4} \rceil $$ block matrices of order  $$ 2 $$
-
- $$ \cdots $$
-
- $$ \lceil 2\frac{|G/N|}{2^{2i}} \rceil $$ block matrices of order  $$ 2^{i} $$
+ $$ \lceil 2\frac{\lvert G/N \rvert}{4} \rceil $$ block matrices of order  $$ 2 $$
 
  $$ \cdots $$
 
- $$ 2 $$ block matrices of order  $$ 2^{\lceil{log_{2}(|G/N|)} \rceil} $$
+ $$ \lceil 2\frac{\lvert G/N \rvert}{2^{2i}} \rceil $$ block matrices of order  $$ 2^{i} $$
+
+ $$ \cdots $$
+
+ $$ 2 $$ block matrices of order  $$ 2^{\lceil{log_{2}(\lvert G/N \rvert)} \rceil} $$
 
 You can let also let the non-zero entries of  $$ W $$ be distinct if you want to equivalently think of a mapping to actual values instead of positions in a matrix.
 
@@ -237,27 +236,27 @@ Let's say that every column in this matrix is 'unoccupied'.
 
 The domain of the labelling  $$ \beta^{l} $$ is  $$ \bigoplus_{\rho \in S_{l}} \bigoplus_{n \in N}M_{n}^{\rho} $$ represented as a block diagonal matrix. We define  $$ \beta_{l} $$, for every column in the domain of height  $$ w $$(number of non-zero entries), we find  $$ i $$ such that  $$ 2^{i-1}<w\leq 2^{i} $$ and associate to this column of height  $$ w $$, the first unoccupied column of size  $$ 2^{i} $$ top-down. Of course, as one can easily see, there might be some elements in the target matrix  $$ W $$ not associated to anything in the domain. Call this column occupied. How do we know we have enough columns?
 
-There can be atmost  $$ \frac{|G/N|}{w}<\frac{|G/N|}{2^{i-1}} $$ columns of height  $$ w $$ in the the domain since there  $$ |G/N| $$ entries in total(see Lemma 2).
+There can be atmost  $$ \frac{ \lvert G/N \rvert}{w}<\frac{\lvert G/N \rvert}{2^{i-1}} $$ columns of height  $$ w $$ in the the domain since there  $$ \lvert G/N \rvert $$ entries in total(see Lemma 2).
 
-Now, it is easy to check that are atleast  $$ \frac{|G/N|}{2^{i-1}} $$ columns in  $$ W $$ of height  $$ 2^{i} $$ in  $$ W $$.
+Now, it is easy to check that are atleast  $$ \frac{\lvert G/N \rvert}{2^{i-1}} $$ columns in  $$ W $$ of height  $$ 2^{i} $$ in  $$ W $$.
 
 This entire procedure is just a kind of rearrangement of the domain for efficient lifting to a  $$ DFT $$ with respect to  $$ G $$. This constructions allows us to define the parent matrix/rearranged matrix of  $$ \bigoplus_{\rho \in S_{l}} \bigoplus_{n \in N}M_{n}^{\rho} $$ with respect to the labelling  $$ \beta^{l} $$ as the matrix having same size as  $$ W $$, above, but with entries replaced by the respective entry of  $$ M_{n}^{\rho} $$ if there is a associated labelling to that entry and zero otherwise.
 
 ## The Finale
 
-Everything is essentially setup now. Don't worry, we've already played the game. The rules have just changed a bit. After some combinatorial hacks, we got what is needed,  $$ r=O(|G/N|log(|G/N|) $$. Though here, we'll replacing that  $$ G $$ by a subgroup
+Everything is essentially setup now. Don't worry, we've already played the game. The rules have just changed a bit. After some combinatorial hacks, we got what is needed,  $$ r=O( \lvert G/N \rvert log( \lvert G/N \rvert)) $$. Though here, we'll replacing that  $$ G $$ by a subgroup
 
- $$ G $$ is a subgroup.  $$ H,K $$ are subgroups such that  $$ H \cap K=N \unlhd G $$.  $$ X $$ is the set of coset representatives of  $$ N $$ in  $$ H $$ and  $$ Y $$ is the set of coset representatives of  $$ N $$ in  $$ K $$. Again, through some structural group-theoretic results,we'll later see that  $$ \frac{|G|}{|HK|} $$ is negligible in a certain sense.
+ $$ G $$ is a subgroup.  $$ H,K $$ are subgroups such that  $$ H \cap K=N \unlhd G $$.  $$ X $$ is the set of coset representatives of  $$ N $$ in  $$ H $$ and  $$ Y $$ is the set of coset representatives of  $$ N $$ in  $$ K $$. Again, through some structural group-theoretic results,we'll later see that  $$ \frac{\lvert G \rvert}{\lvert HK \rvert} $$ is negligible in a certain sense.
 
 Through some simple arguments(strongly recommend seeing  Lemma 3.7 in the paper), we see that if  $$ \alpha \in \mathbb{C}[G] $$ is supported on  $$ HK $$, consider the calculation
 
  $$ \sum\limits_{n \in N}\sum\limits_{y \in Y}\bigoplus_{\tau \in Irr(K)}P_{n,y} \otimes \tau(ny)^{T} $$ where  $$ P_{n,y} $$ is the parent matrix associated to  $$ /{M_{n,y}^{\sigma}: \sigma \in Irr(H) /} $$ which satisfy
 
- $$ \sum\limits_{n \in N}(M_{n,y}^{\sigma} \otimes \underbrace{(I_{\sigma}|\cdots|I_{\sigma})}{|O_{i_{\sigma}}|}\sigma(n)=\sum\limits_{h \in H}\alpha_{hy}\sigma(h) $$
+ $$ \sum\limits_{n \in N}(M_{n,y}^{\sigma} \otimes \underbrace{(I_{\sigma}\lvert \cdots \rvert I_{\sigma})}{\lvert O_{i_{\sigma}} \rvert}\sigma(n)=\sum\limits_{h \in H}\alpha_{hy}\sigma(h) $$
 
 with respect to an  $$ N- $$adapted basis for  $$ Irr(H) $$.
 
-Then, the above calculation can computed with  $$ |Y| $$ DFTs with respect to  $$ H $$+ $$ O(|H/N|log(|H/N|)|K| $$ inverse DFTs with respect to  $$ N $$+ $$ O(|H/N\log(|H/N|) $$ DFTs with respect to  $$ K $$.
+Then, the above calculation can computed with  $$  \lvert Y \rvert $$ DFTs with respect to  $$ H $$+ $$ O(\lvert H/N \rvert log( \lvert H/N \rvert)|K| $$ inverse DFTs with respect to  $$ N $$+ $$ O(\lvert H/N \rvert\log(\lvert H/N \rvert) $$ DFTs with respect to  $$ K $$.
 
 Now, it remains to see how one can lift this to a DFT with respect to  $$ G $$. Let  $$ S $$, $$ T $$ be the change of basis matrices corresponding to  $$ Res_{H}^{G} $$, $$ Res_{K}^{G} $$, i.e
 
@@ -271,9 +270,9 @@ Similarly, for  $$ T $$. We also require that the basis change is one which is  
 
 Consider  $$ \alpha \in \mathbb{C}[G] $$ supported on  $$ HY=HK $$ then we can split up the  $$ G- $$DFT on  $$ \alpha $$ as follows:
 
- $$ \sum\limits_{h \in H,y \in Y} \alpha_{hy} \bigoplus_{\rho \in Irr(G)}\rho(hy)=
+ $$ \sum\limits_{h \in H,y \in Y} \alpha_{hy} \bigoplus_{\rho \in Irr(G)}\rho(hy)= $$
 
-\sum\limits_{y \in Y}(\sum\limits_{h \in H}\alpha_{hy} \bigoplus_{\rho \in Irr(G)}\rho(h)).(\bigoplus_{\rho \in Irr(G)}\rho(y) $$
+$$ \sum\limits_{y \in Y}(\sum\limits_{h \in H}\alpha_{hy} \bigoplus_{\rho \in Irr(G)}\rho(h)).(\bigoplus_{\rho \in Irr(G)}\rho(y) $$
 
 which can be rewritten using  $$ S,T $$ as:
 
@@ -281,11 +280,11 @@ which can be rewritten using  $$ S,T $$ as:
 
 By the discussion above and using equation (1) above, we can further rewrite this as:
 
- $$ \sum\limits_{y \in Y}S(\sum\limits_{n \in N} \bigoplus_{\sigma \in Irr^{*}(H)}(M_{n,y}^{\sigma} \otimes \underbrace{(I_{\sigma}|\cdots|I_{\sigma})}{|O_{i_{\sigma}}|} )S^{-1}T(\bigoplus_{\tau \in Irr^{*}(K)}\tau(ny))T^{-1} $$
+ $$ \sum\limits_{y \in Y}S(\sum\limits_{n \in N} \bigoplus_{\sigma \in Irr^{*}(H)}(M_{n,y}^{\sigma} \otimes \underbrace{(I_{\sigma}|\cdots|I_{\sigma})}{\lvert O_{i_{\sigma}} \rvert} )S^{-1}T(\bigoplus_{\tau \in Irr^{*}(K)}\tau(ny))T^{-1} $$
 
-Consider the quantity  $$ K= (\sum\limits_{n \in N} \bigoplus_{\sigma \in Irr^{*}(H)}(M_{n,y}^{\sigma} \otimes \underbrace{(I_{\sigma}|\cdots|I_{\sigma})}{|O_{i_{\sigma}}|} ) $$ which is in the sum above. Using Lemma 4, calculating  $$ K $$ is equivalent to calculating:
+Consider the quantity  $$ K= (\sum\limits_{n \in N} \bigoplus_{\sigma \in Irr^{*}(H)}(M_{n,y}^{\sigma} \otimes \underbrace{(I_{\sigma}\lvert \cdots \rvert I_{\sigma})}{\lvert O_{i_{\sigma}} \rvert} ) $$ which is in the sum above. Using Lemma 4, calculating  $$ K $$ is equivalent to calculating:
 
- $$ (\bigoplus_{\sigma \in Irr^{*}(H),\tau \in Irr^{*}(K)} (M_{n,y}^{\sigma} \otimes (I_{\sigma}|\cdots|I_{\sigma})) \otimes \tau(ny)^{T})).vec(S^{-1}T) $$
+ $$ (\bigoplus_{\sigma \in Irr^{*}(H),\tau \in Irr^{*}(K)} (M_{n,y}^{\sigma} \otimes (I_{\sigma}\lvert \cdots \rvert I_{\sigma})) \otimes \tau(ny)^{T})).vec(S^{-1}T) $$
 
 There are repetitions in the tensor product structure(both sides) of the  $$ \bigoplus $$ on the left hand side and this can be appropriately changed by shifting the entries of  $$ vec(S^{-1}T) $$ to a block structure(for more info, see section 3.3 of the paper). So, finally, calculating  $$ K $$ is equivalent to calculating,
 
@@ -295,7 +294,7 @@ where  $$ X $$ is a block-diagonal matrix whose entries are sums of entries in  
 
 Let  $$ P_{n,y} $$ be the parent matrix of  $$ \{M_{n,y}^{\sigma} \} $$. So, in the expression above, we can replace  $$ \bigoplus_{\sigma \in Irr(H)} $$ by  $$ P_{n,y} $$ and see that we have to calculate:
 
- $$ K'=(\bigoplus_{\tau \in Irr(K)}P_{n,y} \otimes \tau(ny)^{T}).X' $$ where  $$ X' $$ has the 'same data'(see the paper for more info;honestly, I am not sure how to easily express it;the less one says of these matrix combinatorics, maybe the better) as  $$ S^{-1}T $$. We've rearranged all the  $$ M_{n,y}^{\sigma} $$ above into the parent matrix and so we'd have to appropriately move around the elements of  $$ X' $$. Using the earlier facts of representation theory, namely,  $$ \sum\limits_{\tau \in Irr(K)}dim(\tau)^{2}=|K| $$ and that the blocks in the parent matrix have blocks of orders of the form  $$ 2^{k} $$ such that the the sum of squares of the block sizes(not necessarily total number of non-zero elements) is  $$ O(|H/N|log(|H/N|) $$. So, the square blocks of  $$ \bigoplus_{\tau \in Irr(K)}P_{n,y} \otimes \tau(ny)^{T} $$ have dimensions  $$ a_{i} $$ which satisfy  $$ \sum\limits_{i} a_{i}^{2}=O(|H/N|log(|H/N|))|K| $$
+ $$ K'=(\bigoplus_{\tau \in Irr(K)}P_{n,y} \otimes \tau(ny)^{T}).X' $$ where  $$ X' $$ has the 'same data'(see the paper for more info;honestly, I am not sure how to easily express it;the less one says of these matrix combinatorics, maybe the better) as  $$ S^{-1}T $$. We've rearranged all the  $$ M_{n,y}^{\sigma} $$ above into the parent matrix and so we'd have to appropriately move around the elements of  $$ X' $$. Using the earlier facts of representation theory, namely,  $$ \sum\limits_{\tau \in Irr(K)}dim(\tau)^{2}=\lvert K \rvert $$ and that the blocks in the parent matrix have blocks of orders of the form  $$ 2^{k} $$ such that the the sum of squares of the block sizes(not necessarily total number of non-zero elements) is  $$ O(\lvert H/N \rvert log(\lvert H/N \rvert) $$. So, the square blocks of  $$ \bigoplus_{\tau \in Irr(K)}P_{n,y} \otimes \tau(ny)^{T} $$ have dimensions  $$ a_{i} $$ which satisfy  $$ \sum\limits_{i} a_{i}^{2}=O(\lvert H/N \rvert log(\lvert H/N \rvert))\lvert K \rvert $$
 
 
 
