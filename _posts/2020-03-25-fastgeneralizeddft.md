@@ -26,15 +26,15 @@ This motivates the definition of the Fourier transform  $$ \hat{f} $$ of a funct
 
 where one must note that here, more generally,  $$ \rho(g) $$ can be matrix-valued.From Maschke's theorem, the DFT of a finite group reduces to a map which takes as input an element  $$ \alpha \in latex \mathbb{C}[G] $$(group ring consisting of all functions from  $$ G $$ to  $$ \mathbb{C} $$ under convolution)and sends it to  $$ \sum\limits_{g} \alpha(g) \bigoplus_{\rho \in Irr(G)}\rho(g) $$. Throughout, one assumes that we have already have the  $$ \rho $$ and chosen a basis for each  $$ \rho $$.
 
-Quite simply, one trivially gets that this requires  $$ O(|G|^{2}) $$ operations. Exponent-one algorithms exist for abelian groups(as one would expect using the decomposition into cyclic groups), supersolvable and certain classes of symmetric and alternating groups.
+Quite simply, one trivially gets that this requires  $$ O(\lvert G \rvert^{2}) $$ operations. Exponent-one algorithms exist for abelian groups(as one would expect using the decomposition into cyclic groups), supersolvable and certain classes of symmetric and alternating groups.
 
 Throughout the post, let  $$ \omega $$ be the exponent of matrix multiplication(currently it is around 2.38 I guess).
 
-The main result is that Chris Umans achieves an operation complexity of  $$ O(|G|^{\frac{\omega}{2}}) $$. Some basic facts from representation theory will be used throughout though I guess most readers would already be familiar with that. For example, it is easy to prove that through the Schur orthogonality relations is that  $$ \sum\limits_{i} |V_{i}|^{2}=\lvert G \rvert $$ where the  $$ V_{i} $$ is the set of all irreducible representations of  $$ G $$. This gives us the useful lemma.
+The main result is that Chris Umans achieves an operation complexity of  $$ O(\lvert G \rvert^{\frac{\omega}{2}}) $$. Some basic facts from representation theory will be used throughout though I guess most readers would already be familiar with that. For example, it is easy to prove that through the Schur orthogonality relations is that  $$ \sum\limits_{i} \lvert V_{i} \rvert^{2}=\lvert G \rvert $$ where the  $$ V_{i} $$ is the set of all irreducible representations of  $$ G $$. This gives us the useful lemma.
 
 ## Lemma 1
 
-For every real number  $$ \alpha \geq 2 $$,  $$ \sum\limits_{\rho \in Irr(G)} dim(\rho)^{\alpha} \leq |G|^{\frac{\alpha}{2}} $$(Proof omitted)
+For every real number  $$ \alpha \geq 2 $$,  $$ \sum\limits_{\rho \in Irr(G)} dim(\rho)^{\alpha} \leq \lvert G \rvert^{\frac{\alpha}{2}} $$(Proof omitted)
 
 Some facts about the induced representation and Clifford theory are used but it shouldn't be too much of a hassle to discuss it on-the-fly.
 
@@ -78,7 +78,7 @@ Let  $$ H \leq G $$ be a subgroup, then one can compute a DFT with respect to  $
 
 We've got most of it down. Since  $$ \omega>2 $$, we can use Lemma 1, to get the upper bound  $$ \sum_{\sigma \in Irr(H)} sim(\sigma)^{\omega+\epsilon} \leq \lvert H \rvert^{\frac{\omega}{2}+\epsilon} $$. Now  $$\frac{\omega}{2} >1 $$, so we the upper bound  $$ [G:H]\lvert G \rvert=[G:H]^{2}\lvert H \rvert \leq [G:H] \lvert H \rvert^{\frac{\omega}{2}+\epsilon} $$, this gives as a  $$ O([G:H]^{2}\lvert H \rvert^{\frac{\omega}{2}+\epsilon}) $$ upper bound on the total cost calculated above.
 
-The remaining problem is that we have not stipulated a  $$ H- $$adapted basis. We can convert an arbitrary basis to an  $$ H- $$adapted basis at a cost of  $$ \sum_{\rho \in Irr(G)} O(dim(\rho)^{\omega+\epsilon}) \leq O(|G|^{\frac{\omega}{2}+\epsilon}) using Lemma 1. This is the same bound as the one above for the total cost which proves the theorem.
+The remaining problem is that we have not stipulated a  $$ H- $$ adapted basis. We can convert an arbitrary basis to an  $$ H- $$ adapted basis at a cost of  $$ \sum_{\rho \in Irr(G)} O(dim(\rho)^{\omega+\epsilon}) \leq O(\lvert G\rvert ^{\frac{\omega}{2}+\epsilon}) $$ using Lemma 1. This is the same bound as the one above for the total cost which proves the theorem.
 
 Using this result, it is not too hard(again, see Theorem 5 of the paper) to get the weaker  $$ 1+\frac{\omega}{4} $$ bound for generalized DFT using induction and Lev's theorem(which guarantees the existence of a subgroup of order atleast  $$ \lvert G \rvert^{\frac{1}{2}} $$)
 
@@ -90,13 +90,13 @@ It is quite easy to see that  $$ H,K $$ are subgroups of  $$ G $$ and  $$ \alpha
 
  $$ \sum\limits_{g=hk \in HK}\alpha_{g} \bigoplus_{\sigma \in Irr(H),\tau \in Irr(K)}\sigma(g) \otimes \tau(g) $$ with  $$ \lvert H \rvert $$ K-DFTs and  $$ \lvert K \rvert $$ H-DFTs.
 
-The extra computation cost is proportional to  $$ \frac{\lvert G \rvert}{\lvert HK \rvert} $$ and  $$ |H \cap K $$(roughly if one assumes  $$ \omega $$ is close to  $$ 2 $$). The details can be found in either of the papers. This  $$ HK $$ can be translates appropriately(through a probabilistic argument) to get the overhead cost(which will naturally include a  $$ log(\lvert G \rvert) $$ factor). This prevents the pure  $$ \frac{\omega}{2} $$ exponent that is the ultimate goal. This is dealt with using the new technique of 'Triple subgroup reduction' which I'll discuss shortly. I'll state the main theorem for the double subgroup reduction method below:
+The extra computation cost is proportional to  $$ \frac{\lvert G \rvert}{\lvert HK \rvert} $$ and  $$ \lvert H \cap K \rvert$$(roughly if one assumes  $$ \omega $$ is close to  $$ 2 $$). The details can be found in either of the papers. This  $$ HK $$ can be translates appropriately(through a probabilistic argument) to get the overhead cost(which will naturally include a  $$ log(\lvert G \rvert) $$ factor). This prevents the pure  $$ \frac{\omega}{2} $$ exponent that is the ultimate goal. This is dealt with using the new technique of 'Triple subgroup reduction' which I'll discuss shortly. I'll state the main theorem for the double subgroup reduction method below:
 
 ## Theorem 3:
 
 If  $$ H,K \leq G $$ then the total cost of computing a DFT with respect to  $$ G $$ is
 
-$$ O( \lvert H \rvert K-DFTs+\lvert K\rvert) $$ H-DFTs+ $$ |G|^{\frac{\omega}{2}+\epsilon}+(\lvert H \rvert \lvert K \rvert)^{\frac{\omega}{2}}\frac{\lvert G \rvert}{\lvert HK \rvert}log(\lvert G \rvert))) $$
+$$ O( \lvert H \rvert K-DFTs+\lvert K\rvert) $$ H-DFTs+ $$ \lvert G \rvert^{\frac{\omega}{2}+\epsilon}+(\lvert H \rvert \lvert K \rvert)^{\frac{\omega}{2}}\frac{\lvert G \rvert}{\lvert HK \rvert}log(\lvert G \rvert))) $$
 
 (Proof ommited. See section 3(Theorem 12) of this paper by Umans.)
 
@@ -108,7 +108,7 @@ Umans obtains the golden  $$ \frac{\omega}{2} $$ exponent for solvable groups an
 
 This bottleneck is overcome by considering the case when  $$ H \cap K=N $$ is normal in  $$ G $$. Some structural group-theoretic theorems that I'll introduce later ensure that this choice is possible. This technique will allow us to get rid of the overhead cost. In the calculation of the intermediate representation  $$ \sum\limits_{g=hk \in HK}\alpha_{g} \bigoplus_{\sigma \in Irr(H),\tau \in Irr(K)}\sigma(g) \otimes \tau(g) $$ needed for the double subgroup reduction method, for the first step, we calculate
 
- $$ s_{k}=\sum\limits_{h \in H}\alpha_{hk} \bigoplus_{\sigma \in Irr(H)} \sigma(h) $$ for  $$ k \in K' $$, the coset representatives of the subgroup  $$ H $$ in  $$ G $$. The idea of the triple subgroup reduction is that we can write these  $$ s_{k} $$ as a sum of  $$ |N| $$ matrices with the kind of structure that we'll describe in the main theorem. But before that, I must segue into some facts from representation theory since when we're dealing with representations involving normal subgroups, Clifford theory is important.
+ $$ s_{k}=\sum\limits_{h \in H}\alpha_{hk} \bigoplus_{\sigma \in Irr(H)} \sigma(h) $$ for  $$ k \in K' $$, the coset representatives of the subgroup  $$ H $$ in  $$ G $$. The idea of the triple subgroup reduction is that we can write these  $$ s_{k} $$ as a sum of  $$ \lvert N \rvert $$ matrices with the kind of structure that we'll describe in the main theorem. But before that, I must segue into some facts from representation theory since when we're dealing with representations involving normal subgroups, Clifford theory is important.
 
 ## A Short Interlude
 
@@ -120,7 +120,7 @@ Consider a normal subgroup  $$ N \unlhd G $$. Consider  $$ Irr(N) $$ and some  $
 
 Let  $$ \rho \in Irr(G) $$. Then,
 
- $$ Res_{N}^{G}(\rho) \simeq e_{\rho}\bigoplus_{\sigma \in O_{i_{\rho}}}\sigma $$ such that  $$ e_{\rho},|O_{i_{\rho}}| $$ divide  $$ [G:N] $$. Additionally, note that all the irreducible representations in the orbit have the same dimension  $$ d_{\rho} $$ and hence  $$ dim(\rho)=d_{\rho}e_{\rho}|O_{i_{\rho}}| $$
+ $$ Res_{N}^{G}(\rho) \simeq e_{\rho}\bigoplus_{\sigma \in O_{i_{\rho}}}\sigma $$ such that  $$ e_{\rho},\lvert O_{i_{\rho}} \rvert $$ divide  $$ [G:N] $$. Additionally, note that all the irreducible representations in the orbit have the same dimension  $$ d_{\rho} $$ and hence  $$ dim(\rho)=d_{\rho}e_{\rho} \lvert O_{i_{\rho}} \rvert $$
 
 Proof omitted(see wiki)
 
@@ -135,7 +135,7 @@ What is really important is that for  $$ \rho \in Irr(G),Res_{N}^{G}(\rho) $$ is
 
 ### Proof of Lemma 2:
 
-By definition of the induced representation  $$ Ind_{N}^{G}(\sigma),dim(Ind_{N}^{G}(\sigma))=dim(\sigma)\frac{|G|}{|N|} $$. For  $$ \rho \in Irr(G) $$,let  $$ q(\rho,\sigma) $$ be the number of times  $$ \rho $$ appears in  $$ Ind_{N}^{G}(\sigma) $$, then by decomposition into irreducibles, we get:
+By definition of the induced representation  $$ Ind_{N}^{G}(\sigma),dim(Ind_{N}^{G}(\sigma))=dim(\sigma)\frac{\lvert G \rvert}{\lvert N \rvert} $$. For  $$ \rho \in Irr(G) $$,let  $$ q(\rho,\sigma) $$ be the number of times  $$ \rho $$ appears in  $$ Ind_{N}^{G}(\sigma) $$, then by decomposition into irreducibles, we get:
 
  $$ \sum\limits_{\rho \in Irr(G)} dim(\rho)q(\rho,sigma)=dim(\sigma)\frac{\lvert G \rvert}{\\lvert N \rvert} $$
 
@@ -169,7 +169,7 @@ Proof is omitted. It is slightly fun to work it out though. See Lemma 7 from the
 
 Let  $$ N \unlhd G $$ and for any  $$ \rho \in Irr(G) $$,  $$ d_{\rho},e_{\rho} $$ be the associated quantities obtained from Clifford's theorem. For any  $$ M=\bigoplus_{\rho \in Irr(G)} M^{\rho} $$(where  $$ M^{\rho} $$ is a  $$ dim(\rho) $$-order square matrix), there exists, with respect to an  $$ N- $$adapted basis, matrices  $$ M_{n}^{\rho} $$ of size  $$ dim((\rho)/d_{\rho} \times e_{\rho}) $$ which satisfies:
 
- $$ \sum\limits_{n \in N} (M_{n}^{\rho} \otimes \underbrace{(I_{d_{\rho}}|\cdots \lvert I_{d_{rho}}}_{O_{i_{\rho}}}) \rvert.\rho(n)=M^{\rho} $$(note that  $$ A \lvert B $$ is row notation,i.e  $$ A,B $$ are rows).
+ $$ \sum\limits_{n \in N} (M_{n}^{\rho} \otimes \underbrace{(I_{d_{\rho}}\lvert \cdots \rvert I_{d_{rho}}}_{O_{i_{\rho}}}) \vert.\rho(n)=M^{\rho} $$(note that  $$ A \vert B $$ is row notation,i.e  $$ A,B $$ are rows).
 
 where the matrix  $$ I_{d_{\rho}} \lvert \cdots \rvert I_{d_{rho}} $$ has size  $$ d_{\rho} \times \frac{dim(\rho)}{e_{\rho}} $$
 
@@ -185,7 +185,7 @@ Phew!That's quite a long statement. The last paragraph of the statement is a kin
 
 Since we have an  $$ N- $$adapted basis, the  $$ \rho(n) $$ is of the form  $$ I_{e_{\rho}} \otimes \bigoplus_{\lambda \in O_{l}} \lambda(n) $$.We'll solve for  $$ M_{n}^{\rho} $$ by a sequence of steps:
 
-First, we have  $$ \sum\limits_{n \in N} (M_{n}^{\rho} \otimes \underbrace{(I_{d_{\rho}}|\cdots \vert I_{d_{rho}})}_{ \lvert O_{i_{\rho}} \rvert}. \rho(n)=\sum\limits_{n \in N} M_{n}^{\rho} \otimes (\lambda_{1} \vert \cdots|\lambda_{|O_{l}|}) $$
+First, we have  $$ \sum\limits_{n \in N} (M_{n}^{\rho} \otimes \underbrace{(I_{d_{\rho}} \vert \cdots \vert I_{d_{rho}})}_{ \lvert O_{i_{\rho}} \rvert}. \rho(n)=\sum\limits_{n \in N} M_{n}^{\rho} \otimes (\lambda_{1} \vert \cdots \vert \lambda_{\lvert O_{l} \rvert}) $$
 
 Note that the  $$ \lambda_{i} $$ above span the entire vector space  $$ \mathbb{C}^{d_{\rho} \times \frac{dim(\rho)}{e_{\rho}}} $$. I leave it to the reader to verify that the equation
 
@@ -210,7 +210,7 @@ Now, to deal with the last paragraph of the statement. The important thing is th
 
 Trivially , we can take  $$ \beta^{l} $$ to be a unique labelling for every  $$ \rho \in S_{l} $$ and obviously easily ensure that  $$ \beta^{l'} $$ is completely distinct for all  $$ \rho \in S_{l'} $$. This would be give a trivial  $$ r=\lvert G/N \rvert (\textbf{#} S_{k}) $$ from Lemma 2. The point is that we have to minimize this  $$ r $$ as we have to perform  $$ r $$ inverse DFTs(computationally almost as easy as DFT) with respect to  $$ N $$. Getting back into the proof,
 
-It is actually simple, if the labelling  $$ \beta_{\rho_{1};i,j}^{l} $$ and  $$ \beta_{\rho_{2};i,j}^{l'} $$ are equal, say  $$ T $$(by the condition on the labellings, this means that the  $$ (i,j) $$ entry of  $$ M_{n}^{\rho_{1}} $$ and  $$ M_{n}^{\rho_{2}} $$ are equal where  $$ \rho_{1} \in S_{l} $$ and  $$ \rho_{2} \in S_{l'} $$), then the associated  $$ \lambda_{1},\cdots,\lambda_{|O_{l}|} $$ and  $$ \lambda_{1}^{'},\cdots,\lambda_{|O_{l'}|}^{'} $$ from the two equation of the form (*) above are distinct! Replace the  $$ M_{n;i,j}^{\rho} $$ by the label  $$ T=\beta_{\rho_{1};i,j}^{l}=\beta_{\rho_{2};i,j}^{l'} $$ and simply append the  $$ \lambda_{1}^{'},\cdots,\lambda_{\lvert O_{l'} \rvert}^{'} $$ to  $$ (\lambda_{1}|\cdots|\lambda_{\lvert O_{l} \rvert}) $$ and get  $$ T $$ by an inverse DFT with respect to  $$ N $$.
+It is actually simple, if the labelling  $$ \beta_{\rho_{1};i,j}^{l} $$ and  $$ \beta_{\rho_{2};i,j}^{l'} $$ are equal, say  $$ T $$(by the condition on the labellings, this means that the  $$ (i,j) $$ entry of  $$ M_{n}^{\rho_{1}} $$ and  $$ M_{n}^{\rho_{2}} $$ are equal where  $$ \rho_{1} \in S_{l} $$ and  $$ \rho_{2} \in S_{l'} $$), then the associated  $$ \lambda_{1},\cdots,\lambda_{\lvert O_{l}\rvert} $$ and  $$ \lambda_{1}^{'},\cdots,\lambda_{\lvert O_{l'}\rvert}^{'} $$ from the two equation of the form (*) above are distinct! Replace the  $$ M_{n;i,j}^{\rho} $$ by the label  $$ T=\beta_{\rho_{1};i,j}^{l}=\beta_{\rho_{2};i,j}^{l'} $$ and simply append the  $$ \lambda_{1}^{'},\cdots,\lambda_{\lvert O_{l'} \rvert}^{'} $$ to  $$ (\lambda_{1}\lvert \cdots \rvert \lambda_{\lvert O_{l} \rvert}) $$ and get  $$ T $$ by an inverse DFT with respect to  $$ N $$.
 
 Hence, we need only  $$ r $$ DFTs with respect to  $$ N $$ to get the matrices  $$ M_{n}^{\rho} $$ for all  $$ n \in N $$ and  $$ \rho \in Irr(G) $$ if we have such a labelling.
 
@@ -256,7 +256,7 @@ Through some simple arguments(strongly recommend seeing  Lemma 3.7 in the paper
 
 with respect to an  $$ N- $$adapted basis for  $$ Irr(H) $$.
 
-Then, the above calculation can computed with  $$  \lvert Y \rvert $$ DFTs with respect to  $$ H $$+ $$ O(\lvert H/N \rvert log( \lvert H/N \rvert)|K| $$ inverse DFTs with respect to  $$ N $$+ $$ O(\lvert H/N \rvert\log(\lvert H/N \rvert) $$ DFTs with respect to  $$ K $$.
+Then, the above calculation can computed with  $$  \lvert Y \rvert $$ DFTs with respect to  $$ H $$+ $$ O(\lvert H/N \rvert log( \lvert H/N \rvert)\lvert K \rvert $$ inverse DFTs with respect to  $$ N $$+ $$ O(\lvert H/N \rvert\log(\lvert H/N \rvert) $$ DFTs with respect to  $$ K $$.
 
 Now, it remains to see how one can lift this to a DFT with respect to  $$ G $$. Let  $$ S $$, $$ T $$ be the change of basis matrices corresponding to  $$ Res_{H}^{G} $$, $$ Res_{K}^{G} $$, i.e
 
@@ -280,7 +280,7 @@ which can be rewritten using  $$ S,T $$ as:
 
 By the discussion above and using equation (1) above, we can further rewrite this as:
 
- $$ \sum\limits_{y \in Y}S(\sum\limits_{n \in N} \bigoplus_{\sigma \in Irr^{*}(H)}(M_{n,y}^{\sigma} \otimes \underbrace{(I_{\sigma}|\cdots|I_{\sigma})}{\lvert O_{i_{\sigma}} \rvert} )S^{-1}T(\bigoplus_{\tau \in Irr^{*}(K)}\tau(ny))T^{-1} $$
+ $$ \sum\limits_{y \in Y}S(\sum\limits_{n \in N} \bigoplus_{\sigma \in Irr^{*}(H)}(M_{n,y}^{\sigma} \otimes \underbrace{(I_{\sigma} \lvert \cdots \rvert I_{\sigma})}{\lvert O_{i_{\sigma}} \rvert} )S^{-1}T(\bigoplus_{\tau \in Irr^{*}(K)}\tau(ny))T^{-1} $$
 
 Consider the quantity  $$ K= (\sum\limits_{n \in N} \bigoplus_{\sigma \in Irr^{*}(H)}(M_{n,y}^{\sigma} \otimes \underbrace{(I_{\sigma}\lvert \cdots \rvert I_{\sigma})}{\lvert O_{i_{\sigma}} \rvert} ) $$ which is in the sum above. Using Lemma 4, calculating  $$ K $$ is equivalent to calculating:
 
