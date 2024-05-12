@@ -14,7 +14,7 @@ toc:
 
 Almost 6 months ago, I came across an interesting update through the UT CS theory seminar group on the classic problem on the computation of the Discrete Fourier Transform(DFT) of finite groups. Chris Umans, from Caltech, made some pretty nice improvements to the complexity of the general DFT through some slick combinatorics , which I'll shortly explain. The paper is here.
 
-# Introduction
+## Introduction
 
 Well, before I even start, perhaps, I should make some kind of a comment to motivate the problem at hand. A sequence of  $$ n $$ complex numbers  $$ (x_{i}) $$ can be represented by a function  $$ f:\mathbb{Z}_{n} \to \mathbb{C} $$.
 
@@ -46,7 +46,7 @@ Let  $$ G $$ be a group and  $$ S $$, a subset. Let's assume that we can calucla
 
 If a generalized DFT can be computed with respect to  $$ G $$ for all inputs supported on  $$ S $$ in  $$ m $$ operations, then the generalized DFT with respect to  $$ G $$ can be computed for all inputs with operation count
 
- $$ O(m+|G|^{\frac{\omega}{2}+\epsilon})\frac{|G|log(|G|)}{|S|} $$
+ $$ O(m+\lvert G \rvert^{\frac{\omega}{2}+\epsilon})\frac{\lvert G \rvert log(\lvert G \rvert)}{\lvert S \rvert} $$
 
 The aim is to use the subgroup structure in an attempt to reduce the operation complexity, which brings us to the main idea.
 
