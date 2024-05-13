@@ -32,6 +32,12 @@ followed by applying the operator  $$ U $$ above which selects the marked item b
 
 and then apply the diffusion operator :
 
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.html path="assets/img/quantum_computing/oracle_first.webp" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+
  $$ D=2 \vert s \rangle \langle s \vert-I $$. This, in effect, flips the marked qubit around the mean, selectively increasing its relative amplitude.
 
 Explicitly, the mapping of the diffusion gate is:
@@ -86,6 +92,12 @@ So, first we obtain some interval  $$ [\theta_{min}^{t+1},\theta_{max}^{t-1}] $$
 
 This is explained in part 1 of Aaronson's overview of the algorithm:
 
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.html path="assets/img/quantum_computing/algorithm_second.webp" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+
 Here , $$ \phi $$ is the uniform superposition of all states and  $$ G $$ is the diffusion operator
 
 Note that :
@@ -107,6 +119,12 @@ If more heads are observed, set  $$ \theta_{min}:=\frac{\theta_{max}}{1+0.9 \gam
  $$ \theta_{max}:=\theta_{min}(1+0.9\gamma) $$.
 
 This process fails to maintain  $$ \theta_{min} \leq \theta \leq \theta_{max} $$ with low probability  $$ \gamma $$. The value  $$ r $$ also has some non-trivial bounds.
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.html path="assets/img/quantum_computing/r_third.webp" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
 
 The probability of getting heads above is exactly the probability of getting a marked item in  $$ G^{\frac{r-1}{2}}\vert \psi \rangle $$ above.
 
