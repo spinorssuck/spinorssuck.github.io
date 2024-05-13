@@ -1,7 +1,7 @@
 ---
 layout: post
 title: The Sensitivity Conjecture
-date: 2020-03-28
+date: 2019-08-08
 description: an introduction to the recently proven sentitivity conjecture
 tags: math
 categories: math

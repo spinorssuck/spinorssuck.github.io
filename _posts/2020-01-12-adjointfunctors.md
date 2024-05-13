@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Irrationality of basic trigonometric and hyperbolic functions at rational values
-date: 2019-05-12
+title: What exactly are adjoint functors
+date: 2019-01-12
 description: 
 tags: analysis algebra irrational
 categories: math

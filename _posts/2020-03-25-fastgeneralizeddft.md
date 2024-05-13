@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Fast Generalized DFT for finite groups
-date: 2020-01-25
+date: 2020-03-25
 description: Group Cohomology
 tags: algebra 
 categories: cs math
