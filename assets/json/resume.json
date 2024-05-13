@@ -178,9 +178,7 @@
   "projects": [
     {
       "name": "SpinorTracer - Ray Tracer Path Tracer engine",
-      "summary": "used mathematical physics, C++ to build a path tracer-ray tracer engine with multiple levels of optimization,
-      increasing performance rate by 750% over naive implementation. (Ray and path tracers are often used for image
-      rendering, modeling light transport in video games, and the film industry)",
+      "summary": "Path-tracer, ray-tracer engine built using C++",
       "highlights": [
         "CUDA",
         "Ray tracing",
