@@ -12,7 +12,7 @@ toc:
     sidebar: left
 ---
 
-In the previous post, I gave a little glimpse into derived functors and somewhat motivated their construction. In this post, we'll get our hands dirty with homological algebra to continue setting up the required machinery and go through many proofs.
+In the <a href="https://spinorssuck.github.io/blog/2020/spectralseq1/">previous post</a>, I gave a little glimpse into derived functors and somewhat motivated their construction. In this post, we'll get our hands dirty with homological algebra to continue setting up the required machinery and go through many proofs.
 
 In the previous post, I promised to continue the proof of a lemma which establishes a long exact sequence. Before giving the proof, let me mention a few facts which will be useful.
 
