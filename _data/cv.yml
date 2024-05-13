@@ -15,14 +15,15 @@
       institution: University of Texas at Austin
       year: 2024
     - title: Courses
-      items:
-        - Algebraic Geometry
-        - Lie Groups
-        - Algebraic Topology
-        - Graduate Quantum Mechanics
-        - Algorithsm and Complexity(Graduate)
-    description:
-      - Besides math, I also took a lot of physics and CS class while working on CS side-projects.
+      contents:
+        items:
+          - Algebraic Geometry
+          - Lie Groups
+          - Algebraic Topology
+          - Graduate Quantum Mechanics
+          - Algorithsm and Complexity(Graduate)
+        description:
+          - Besides math, I also took a lot of physics and CS class while working on CS side-projects.
         
 
 - title: Experience
