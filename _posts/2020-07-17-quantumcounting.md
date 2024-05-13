@@ -1,77 +1,131 @@
 ---
 layout: post
-title: The Sensitivity Conjecture
-date: 2019-08-08
-description: an introduction to the recently proven sentitivity conjecture
-tags: math
+title: A Note on Quantum Approximate Counting and Random Musings
+date: 2020-07-17
+description: 
+tags: quantum-computing quantum
 categories: math
 giscus_comments: false
 related_posts: false
 featured: true
 toc:
-    beginning: true
+    sidebar: left
 ---
 
 ## Introduction
 
-If you aren't aware, one month ago, the Sensitivity Conjecture, a 30-year old problem, was proven by Hao Hung, an assistant professor at Emory University in just a little more than 2 pages using particularly simple methods albeit cleverly implemented. The proof is very easy to understand and requires nothing more than basic linear algebra. You can find it here.
+Ok, today we'll tackle something that I've never talked about in my blog before:Quantum computing.There might be a few more quantum computing posts in the future if I am in the mood for it.
 
-A few days ago, Donald Knuth simplified the already simple proof of H. Hung and could fit all his arguments in half a page. What really shocked me when I heard the news is that Knuth is still alive. I could have sworn that it was only a few days ago when I was skimming through a textbook on Discrete Mathematics and saw a bio with a black-and-white pic of him in one of the chapters related to computational complexity in the same manner that I'd see pictures and mini-biographies of other 20th century giants such as Grothendieck and Nash relegated to the margins of math textbooks and online articles romantically detailing the course of their fabled lives.
+The problem at hand is simple: There is an unordered list of  $$ N $$ items of which  $$ K $$ are marked;Approximate the value of  $$ K $$. Throughout, we'll represent the  $$ N $$ items by  $$ [N] $$ and the  $$ K items $$ by  $$ [K] $$. 
 
-Now that I've realized that he's well and alive, it shocks me equally to learn that at the age of 81, he is still able to contribute to research.
+This is actually a rather old problem which has been tackled before, and is deeply connected to amplitude estimation(see [1]) which uses uses the Quantum Fourier transform. Recently though, a simpler proof which uses only Grover-like techniques was published by Scott Aaronson, a professor at UT Austin(Hook em' Horns!). Note that the algorithm is probabilistic with no bounds. 
 
-I'm not exactly going to regurgitate Knuth's proof but what I'll present certainly uses the same ideas. I must note here than Knuth's proof itself is inspired by a comment on Scott Aronson's blog which provided a method to prove the conjecture without using Cauchy's Interlacing Theorem.
+The heart of the technique is Grover's algorithm so perhaps I should spend a few words on that. Consider an unordered list of size  $$ N $$ where you want to find a particular element which can be checked to be a solution in constant time, then this can be found in  $$ O(\sqrt{N}) $$.
 
-If you don't know what the Sensitivity Conjecture, I'll state it below.
+In the classical case, one is forced to do this(both the above problem and QAC) in  $$ O(n) $$ time. The full strength of Grover's algorithm is that one can actually find the pre-image  $$ f^{-1}(b) $$ for  $$ f:[N] \to \{0,1\} $$ where  $$ f $$ maps  $$ x $$ to  $$ 1 $$ if and only if  $$ x $$ is a solution to the given problem. This is all encoded as a quantum black-box unitary operator  $$ U $$ defined by  $$ U\vert x \rangle =\vert x \rangle $$ if  $$ f(x)=0 $$ and  $$ U\vert x \rangle=-\vert x \rangle $$ if  $$ f(x)=1 $$.
 
-If  $$ f:\{0,1\}^{n} \mapsto \{0,1 \}  $$ is a boolean function where the domain is the graph of the  $$ n-dimensional $$ cube denoted by  $$ Q^{n}=\{0,1 \}^{n} $$. So, a particular input  $$ x $$ is just a string of 0s and 1s. The local sensitivity of  $$ f $$ at an input  $$ x $$ is the number of indices in the 'string' of  $$ x $$ that you can flip and not change the output. The local block sensitivity of  $$ f $$ at input  $$ x $$ is the number of disjoint subsets of the set of indices  $$ \{0,1,2 \cdots, n \} $$ such that the output doesn't change when every index corresponding to a block flips in the input string of  $$ x $$. The sensitivity and block sensitivity are defined to be the maximum of these corresponding measures over all the inputs.
+The idea of the algorithm is that we spit out the the superposition of all states:
 
-The sensitivity conjecture basically states that the block sensitivity is polynomially correlated to sensitivity.
+ $$ \vert s \rangle =\frac{1}{\sqrt{N}} \sum\limits_{i=1}^{N} \vert x \rangle $$
 
-Throughout the article, I denote block sensitivity and sensitivity by  $$ bs $$ and  $$ s $$ respectively.
+followed by applying the operator  $$ U $$ above which selects the marked item by flipping it.
 
-## Sensitivity Conjecture
+and then apply the diffusion operator :
 
-> There is a constant  $$ k>0 $$ such that  $$ bs(f) < s(f)^{k} $$
+ $$ D=2 \vert s \rangle \langle s \vert-I $$. This, in effect, flips the marked qubit around the mean, selectively increasing its relative amplitude.
 
-Since Gotsman and Linial proved an equivalence related to induced subgraphs of the  $$ n-dimensional $$ cube in 1992, the Sensitivity Conjecture follows as a consequence to the following problem:
+Explicitly, the mapping of the diffusion gate is:
 
-### Theorem
+ $$ \sum\limits_{x \in \{0,1\}^{n}}\alpha_{x}\vert x \rangle  \mapsto \sum\limits_{x \in \{0,1\}^{n}}(2\mu-\alpha_{x}) $$ where  $$ \mu $$ is the mean of the  $$ \vert x \rangle $$.
 
-> Any induced subgraph  $$ H $$ of  $$ Q^{n} $$ with  $$ |V(H)|=2^{n-1}+1 $$ satisfies  $$ \Delta{H} \geq \sqrt{n}  $$.
+One repeats this a certain number of times(specifically  $$ O(\sqrt{N}) $$ and then measures, obtaining the corresponding eigenvalue with high probability.
 
-## Useful Lemmas
+## A Random Aside?
 
-### Lemma 1
+In the case of a non-local hidden-variable quantum computer, one can actually do this in atmost  $$ O(\sqrt[3]{N}) $$ time. I'm not really going to talk about this. However, this spawned a simple question:What if you could perform it in  $$ O(log(N)) $$ time? What would that actually imply?
 
-> Recursively define a sequence of square matrices as follows:
->  $$ A_{1}=\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}
-> A_{n}=\begin{bmatrix} A_{n-1} & I_{2^{n-1}} \\ I_{2^{n-1}} & -A_{n-1} \end{bmatrix}  $$
-> Then  $$ A_{n} $$ has eigenvalues  $$ \sqrt{n},-\sqrt{n} $$ of multiplicities  $$ 2^{n-1} $$ and  $$ 2^{n-1} $$ respectively.
+Consider the SAT problem: There are variables  $$ x_{1},\cdots,x_{n} $$ and expressions in these variables  $$l_{1},\cdots,l_{k} $$. Find an assignment of either true/false to each  $$ x_{i} $$ such that all the expressions  $$ l_{p} $$ evaluate to true.,i.e  $$ l_{1} \land l_{2} \land \cdots \land l_{k} $$ is true.
 
-### Lemma 2
+Anyways, we can store all  $$ O(2^{n}) $$ possibilities and search through them in  $$ O(log(2^{n}))=O(n) $$ time in our hypothetical case, which is linear. This would mean that confirmed NP decision problems like  $$ SAT $$, Hamiltonian path problem can be solved in polynomial time which implies  $$ P=NP $$. So, it is unlikely that this is the case. 
 
-> Let  $$ H $$ be an undirected graph with  $$ |V(H)|=n $$ and  $$ A_{H} $$ is a  $$ m \times m $$ symmetric matrix where  $$ a_{ij} $$ is equal to either  $$ 1 $$ or  $$ -1 $$ if there is an edge joining vertex  $$ i $$ and  $$ j $$ and  $$ 0 $$ if there isn't.
-> Then,  $$ \Delta (H) \geq \lambda_{1} $$ where  $$ \lambda_{1} $$ is the largest eigenvalue of  $$ A_{H} $$.
+I'll get back to the these things in the end of this post.
 
-Note: If you replace -1 by 1 in every entry of  $$ A_{H} $$, you get the adjacency matrix of  $$ H $$.
+## Quantum Approximate Counting
 
-Let  $$ H $$ be an undirected graph with  $$ |V(H)|=n $$ and  $$ A_{H} $$ is a  $$ m \times m $$ symmetric matrix where  $$ a_{ij} $$ is equal to either  $$ 1 $$ or  $$ -1 $$ if there is an edge joining vertex  $$ i $$ and  $$ j $$ and  $$ 0 $$ if there isn't.
+Consider an unordered collection of size  $$ N $$ where  $$ K $$ of them is marked. Estimate the value of  $$ K $$. This is the problem at hand.
 
-Then,  $$ \Delta (H) \geq \lambda_{1} $$ where  $$ \lambda_{1} $$ is the largest eigenvalue of  $$ A_{H} $$.
+Firstly, let's clarify the exact problem statement. We wish to find an approxiamte solution, so that means we select multiplicative error  $$ \epsilon $$, i.e find  $$\tilde{K} $$ such that 
 
-Note: If you replace -1 by 1 in every entry of  $$ A_{H} $$, you get the adjacency matrix of  $$ H $$.
+ $$ 1-\epsilon \leq \frac{\tilde{K}}{K} \leq 1+\epsilon $$
 
-## Proof of Theorem 1
+Moreover, the algorithm is supposed to be probabilistic so we also select a small probability of failure  $$\delta $$.
 
-Consider the sequence of matrices  $$ A_{n} $$ from Lemma 1. For the (2^{n-1}+1)-vertex induced subgraph  $$ H $$, consider the principal submatrix  $$ A_{H} $$ of  $$ A_{n} $$. Using Lemma 2,  $$ \Delta (H) \geq \lambda_{1}(A_{H}) $$. The aim now is to lower bound  $$ \lambda_{1}(A_{H}) $$ by  $$ \sqrt{n} $$.
+Let's first review some obvious solutions before getting to the actual algorithm. One must note that in the case of a quantum solution, we only care about how many query calls we make,i.e the query call complexity. The real difference in these cases is that in a quantum computer, we can measure observables and get a probability distribution of measurements, so we want to make clever choices for the observables that we measure to extract useful information, the same philosophy behind Grover's algorithm. As such, it seems reasonable that in a good solution, the query call complexity depends somehow on the value  $$ K $$ itself.
 
-Let  $$ E $$ be the eigenspace of  $$ \sqrt{n} $$ in  $$ A_{n} $$.  $$ dim(E)=2^{n-1} $$. The spectral norm of a matrix  $$ A $$ is  $$ \| A \|=sup\{\|Au\|;\|u \|=1 \}  $$. It is a well known fact that the spectral norm of a real symmetric matrix is equal to the greatest eigenvalue.
+## Classical solution
 
-Let  $$ U $$ be the space of all unit vectors in  $$ A_{H} $$. Then, this space can be extended to a space  $$ U' $$ in  $$ A_{n} $$ by inserting 0 in the coordinates which don't correspond to the rows of  $$ A_{H} $$. Since  $$ H $$ has  $$ 2^{n-1}+1 $$ vertices,  $$ A_{H} $$ is a  $$ (2^{n-1}+1) \times (2^{n-1}+1) $$ submatrix. Hence,  $$ dim(U')\geq 2^{n-1}+1 $$. Since  $$ 2^{n} $$ is the size of the square matrix  $$ A_{n} $$, this means that there is some vector  $$ x $$ that is in both  $$ E $$ and  $$ U' $$.
+To exactly find  $$ K $$, the only choice is a linear search which is  $$ O(n) $$. Actually, the approximate case(deterministic) could be done in  $$ O(\frac{1}{\epsilon^{2}}\frac{N}{K}) $$.
 
-Combining these facts, we get  $$ \lambda_{1} \geq \|A x\|=\sqrt{n} \|x\|=\sqrt{n} $$.
+## 'Easy' quantum solution
 
-Hence,  $$ \Delta (H) \geq \sqrt{n} $$.
+Use Grover's algorithm where  $$ f $$ maps the input to  $$ 1 $$ if and only if it is marked, this would be  $$ O(\sqrt{N}) $$.
 
-Well, that's the end of the proof. Using results from Nisan and Szegedy, H. Hung actually established a result slightly stronger than the originial Sensitivity conjecture i.e  $$ bs(f) <2s(f)^{4}  $$.
+Query call complexity of the ideal solution
+
+Perhaps, it is best if I reveal the complexity before moving on. The ideal ideal query call complexity to obtain  $$ \tilde{K} $$ which  $$ \epsilon-approximates $$  $$ K $$ with high probability of success  $$ 1-\delta $$ is  $$ O(\frac{1}{\epsilon} \sqrt{\frac{N}{K}} log(\frac{1}{\delta})) $$.
+
+## Initial steps
+
+Instead of approximating  $$ K $$, we equivalently approxiamte  $$ \theta = arcsin(\frac{N}{K}) $$.
+
+There are really two steps:
+
+First, we find a good constant-factor approximation to  $$ K $$ and then we cleverly shave off the bounds to get an  $$ \epsilon -approximation $$.
+
+So, first we obtain some interval  $$ [\theta_{min}^{t+1},\theta_{max}^{t-1}] $$ containing  $$ \theta $$.
+
+This is explained in part 1 of Aaronson's overview of the algorithm:
+
+Here , $$ \phi $$ is the uniform superposition of all states and  $$ G $$ is the diffusion operator
+
+Note that :
+
+ $$ G^{\frac{r-1}{2}}\vert \psi \rangle=\frac{sin(r\theta)}{\sqrt{K}} \sum\limits_{x \in [K] } \vert x \rangle +\frac{cos(r\theta)}{\sqrt{K}} \sum\limits_{x \not\in [K]} \vert x \rangle $$. In the computational basis, the probability of measuring a marked item is  $$ sin^{2}(r\theta) $$. Step 1 essentially returns a constant factor approxiamtion to  $$ \theta $$ withhigh probability. This can be proven using Chernoff bounds which I'll omit from the discussion. 
+
+It is also proven in page 5 that with high probability, one will not find enough marked items to finish step 1 before  $$ t<t_{0} $$. Also, with high probability, we'll see enough marked items in  $$ t=t_{0},t_{0}+1 $$.The interesting part is how to get an  $$ \epsilon-approximation $$.
+
+## Final solution
+
+Now, that we have  $$ \theta_{min},\theta_{max} $$, we use the following clever result on page 9:
+
+Let  $$ 0<\theta_{min}\leq \theta\leq \theta_{max} \leq \frac{\pi}{1000} and  $$ \theta_{max}=\theta_{min}(1+\gamma) $$ where  $$ \gamma \leq \frac{1}{5} $$. There exists an integer  $$ r $$ such that the following is true:
+
+Consider tossing a biased coin which is heads with probability  $$ sin^{2}(r\theta) $$ at least  $$ 1000.ln(\frac{1}{\epsilon}) $$ times. 
+
+If more heads are observed, set  $$ \theta_{min}:=\frac{\theta_{max}}{1+0.9 \gamma} $$ else set
+
+ $$ \theta_{max}:=\theta_{min}(1+0.9\gamma) $$.
+
+This process fails to maintain  $$ \theta_{min} \leq \theta \leq \theta_{max} $$ with low probability  $$ \gamma $$. The value  $$ r $$ also has some non-trivial bounds.
+
+The probability of getting heads above is exactly the probability of getting a marked item in  $$ G^{\frac{r-1}{2}}\vert \psi \rangle $$ above.
+
+The upshot is that we can distinguish  $$ \theta_{min},\theta_{max} $$ by measurement by considering instead  $$ r\theta_{min},r\theta_{max} $$ which are nearly orthogonal. Based on our results of measurement, we shave-off either  $$ \theta_{min} $$ or  $$ \theta_{max} $$ by a factor of  $$ 0.9 $$ getting closer and closer(with high probability) to our required  $$ \epsilon- $$estimate of  $$ \theta $$.
+
+## Philosophical musings on Energy and Algorithms
+
+I beg the reader to ignore everything here and close this tab immediately as I have no idea what I'm saying(not that I ever do).
+
+Recently, I came across a few interesting thins=gs:
+
+One was an experimental method to tackle classic difficult computer science problems. One was using chemical reactions with DNA molecules to solve the Hamiltonian path problem which is NP-hard. The problem was that it requires an amount factorial in the number of vertices to work. Another solution uses an optical contraption of cables and beam splitters to get a solution. Again, the drawback is that amount of required energy is exponential in the number of vertices. There is another example of some kind of a bizarre mold which rearranges itself in a manner to give an approximate solution to the Travelling Salesman Problem. 
+
+In fact, there is an entire field of DNA computing. The aim is to use parallel computing to optimize our solutions. The drawback is that the processing speed is slow.
+
+Again, even for Grover's algorithm, note that we must first 'store'/obtain the entire quantum state itself unlike a classic linear-search where the auxilliry space needed is 1. Within a certain degree(spanning all these systems of computing), it seems that we can, to SOME degree, substitute time for space/energy.An obvious thing to note is that you can't decide anything about some new data if you haven't even stored it. More often than not, we are willing to make this sacrifice because we care more for efficiency.
+
+Parallel computing speedups require increasing the number of components. Of course, there is Amdahl's law which puts some kind of a restriction to this.
+
+Aaronson talked about this in one of his informal talks(I think an interview or TedTalk).
+
+The study of complexity theory really may reveal things about physics, nature and energy it seems. In classical computing, there is a limit to how much we can trade space for time so we consider other unconventional types of computing where the threshold for this tradeoff is higher. This is truly an interesting direction to think in.
