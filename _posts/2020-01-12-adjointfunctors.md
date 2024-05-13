@@ -12,6 +12,7 @@ toc:
     sidebar: left
 ---
 
+## Introduction
 
 Below, I'll repost an answer I gave to a question on Quora about the importance of adjoint functors. It is a simple exposition which focuses on the intuition behind their construction and gives a few examples with explanations that can aid anyone who is beginning to learn about adjoint functors. I'll probably add more detail on the  $$ BC $$ and throw in a few more diagrams later.
 

@@ -7,7 +7,7 @@ tags: analysis algebra irrational
 categories: math
 giscus_comments: false
 related_posts: false
-featured: true
+featured: false
 toc:
     sidebar: left
 ---
