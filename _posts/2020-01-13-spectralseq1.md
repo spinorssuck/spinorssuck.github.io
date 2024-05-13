@@ -23,10 +23,11 @@ Anyways, enough of the nonsense. Though the Grothendieck spectral sequeuce encod
 
 An object  $$ I $$ in a category  $$ C $$ is said to be an injective object if for every morphism  $$ f:X \to I $$ and every monomorphism  $$ i:X \to Y $$, there exists a morphism  $$ h:Y \to I $$ extending the map  $$ f $$ such that the diagram commutes.
 
-$$ \begin{tikzcd}
-X \arrow[r, hook] \arrow[d, "f"] & Y \arrow[ld, "h", dashed] \\
-I                                &                          
-\end{tikzcd} $$
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.html path="assets/img/spectralsequence1/1.png" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
 
 In the abelian category setting, the importance lies in the fact that  $$ I $$ is an inejctive object if and only if the Hom functor is  $$ Hom_{C}(--,I) $$ is exact. If an injective object is at the beginning of a short exact sequence in  $$ C $$, the sequence splits.
 
@@ -77,7 +78,6 @@ The final step of this formalization is ensuring that we have the long exact seq
 If  $$ 0 \to L \to M \to N \to 0 $$ is a short exact sequence in an abelian category  $$ A $$ with enough injectives and  $$ F $$ is a left exact functor, there is an LES
 
  $$ 0 \to L \to M \to N \to \\
-
 \to R^{1}(F(L)) \to R^{1}(F(M)) \to R^{1}(F(N)) \to \cdots  $$
 
 The proof will be deferred to the next post with discussions on its dual, other theorems and special cases such as Ext, Tor.

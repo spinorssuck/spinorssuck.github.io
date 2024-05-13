@@ -1,8 +1,8 @@
 ---
 layout: post
-date: 2015-10-22 15:59:00-0400
+date: 2020-06-01 15:59:00-0400
 inline: true
 related_posts: false
 ---
 
-A simple inline announcement.
+I will be joining the ROSS program as an instructor for the summer of 2020.
