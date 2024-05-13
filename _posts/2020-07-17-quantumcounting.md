@@ -34,7 +34,7 @@ and then apply the diffusion operator :
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/quantum_computing/oracle_first.webp" class="img-fluid rounded z-depth-1" %}
+        {% include figure.html path="assets/img/quantum_computing/oracle_first.png" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 
@@ -94,7 +94,7 @@ This is explained in part 1 of Aaronson's overview of the algorithm:
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/quantum_computing/algorithm_second.webp" class="img-fluid rounded z-depth-1" %}
+        {% include figure.html path="assets/img/quantum_computing/algorithm_second.png" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 
@@ -122,7 +122,7 @@ This process fails to maintain  $$ \theta_{min} \leq \theta \leq \theta_{max} $$
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/quantum_computing/r_third.webp" class="img-fluid rounded z-depth-1" %}
+        {% include figure.html path="assets/img/quantum_computing/r_third.png" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 
