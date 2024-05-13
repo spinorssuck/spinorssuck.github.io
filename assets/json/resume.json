@@ -1,40 +1,42 @@
 {
   "basics": {
-    "name": "Albert Einstein",
-    "label": "Scientist",
-    "image": "",
-    "email": "albert@einstein.de",
-    "phone": "(912) 123-4567",
-    "url": "https://alshedivat.github.io/al-folio/",
-    "summary": "A German-born theoretical physicist, widely ranked among the greatest and most influential scientists of all time",
+    "name": "Rithvik Reddy",
+    "label": "Math major",
+    "image": "https://spinorssuck.github.io/assets/img/profilepic-480.webp",
+    "email": "rithvikreddy@utexas.edu",
+    "phone": "(737) 977-1424",
+    "url": "https://spinorssuck.github.io/people/",
+    "summary": "Student interested in various areas of pure math, theoretical computer sciences, and software development.",
     "location": {
-      "address": "2712 Broadway St",
-      "postalCode": "CA 94115",
-      "city": "San Francisco",
+      "address": " ",
+      "postalCode": "78705",
+      "city": "Austin",
       "countryCode": "US",
-      "region": "California"
+      "region": "Texas"
     },
     "profiles": [
       {
-        "network": "Twitter",
-        "username": "AlbertEinstein",
-        "url": "https://twitter.com/AlbertEinstein"
+        "network": "LinkedIn",
+        "username": "rithvikreddyspinors",
+        "url": "https://www.linkedin.com/in/rithvikreddyspinors/"
       }
     ]
   },
   "work": [
     {
-      "name": "Institute for Advanced Study, Princeton University",
-      "position": "Professor of Theoretical Physics",
-      "url": "https://example.com",
-      "startDate": "1933-01-01",
-      "endDate": "1955-01-01",
-      "summary": "Teaching at Palmer Physical Laboratory (now 302 Frist Campus Center). While not a professor at Princeton, I associated with the physics professors and continued to give lectures on campus.",
+      "name": "University of Texas at Austin",
+      "position": "Research Assistant",
+      "url": " ",
+      "startDate": "2021-05-22",
+      "endDate": "2021-07-29",
+      "summary": "Research Assistant at UT Austin",
       "highlights": [
-        "Relativity"
+        "mathematics"
       ]
     }
   ],
+
+  /*
   "volunteer": [
     {
       "organization": "People's Climate March",
@@ -47,21 +49,30 @@
         "Awarded 'Climate Hero' award by Greenpeace for my efforts organizing the march.","Men of the year 2014 by Time magazine"
       ]
     }],
+    
+    */
   "education": [
     {
-      "institution": "University of Zurich, Zurich, Switzerland",
-      "location": "Zurich, Switzerland",
-      "url": "https://www.uzh.ch/",
-      "area": "Software Development",
-      "studyType": "PhD",
-      "startDate": "1905-01-01",
-      "endDate": "1905-01-01",
+      "institution": "University of Texas at Austin",
+      "location": "Austin, TX, USA",
+      "url": "https://www.ma.utexas.edu/",
+      "area": "Mathematics",
+      "studyType": "Bachelors of Science",
+      "startDate": "2019-08-19",
+      "endDate": "2024-07-18",
       "score": "10",
       "courses": [
-        "Theory of Relativity"
+        "Algebraic Geometry",
+        "Graduate Quantum Mechanics",
+        "Algebraic Topology",
+        "Lie Groups",
+        "Algorithms and Complexity(Graduate)",
+        "Software Design and Implementation II"
       ]
     }
   ],
+
+  /*
   "awards": [
     {
       "title": "Nobel Prize in Physics",
@@ -71,50 +82,31 @@
       "summary": "The Nobel Prizes are five separate prizes that, according to Alfred Nobel's will of 1895, are awarded to 'those who, during the preceding year, have conferred the greatest benefit to humankind.'"
     }
   ],
+  */
   "certificates": [
     {
-      "name": "Machine Learning",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-location-dot"
-    },
-    {
-      "name": "Quantum Computing",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
+      "name": "Advanced Linear Algebra, From Foundation to Frontiers",
+      "date": "2024-07-29",
+      "issuer": "University of Texas at Austin (edX)",
+      "url": " ",
       "icon": "fa-solid fa-tag"
     },
     {
-      "name": "Quantum Information",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-envelope"
-    },
+      "name": "Statistics",
+      "date": "2024-07-29",
+      "issuer": "DeltX(edX)",
+      "url": " ",
+      "icon": "fa-solid fa-tag"
+    }
     {
-      "name": "Quantum Cryptography",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-hashtag"
-    },
-    {
-      "name": "Quantum Communication",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-calendar"
-    },
-    {
-      "name": "Quantum Teleportation",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-clipboard-check"
+      "name": "Machine Learning",
+      "date": "2022-04-07",
+      "issuer": "edX",
+      "icon": "fa-solid fa-tag"
     }
   ],
+
+  /*
   "publications": [
     {
       "name": "Zur Elektrody/namik bewegter Körper",
@@ -138,6 +130,8 @@
       "summary": "The publication of the theory of general relativity made him internationally famous. He was professor of physics at the universities of Zurich (1909–1911) and Prague (1911–1912), before he returned to ETH Zurich (1912–1914)."
     }
   ],
+
+  */
   "skills": [
     {
       "name": "Physics",
@@ -150,8 +144,8 @@
   ],
   "languages": [
     {
-      "language": "German",
-      "fluency": "Native speaker"
+      "language": "Hindi",
+      "fluency": "Fluent"
       "icon":""
     },
     {
@@ -162,13 +156,14 @@
   ],
   "interests": [
     {
-      "name": "Physics",
+      "name": "Mathematics",
       "icon": "fa-solid fa-tag",
       "keywords": [
-        "Quantum Mechanics","Quantum Computing","Quantum Information","Quantum Cryptography","Quantum Communication","Quantum Teleportation"
+        "Algebraic Geometry","Representation Theory","Tropical Geometry","Geometric Langlands"
       ]
     }
   ],
+  /*
   "references": [
     {
       "name": "Professor John Doe",
@@ -181,17 +176,25 @@
       "reference": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum, diam quis convallis euismod, arcu mi ullamcorper lorem, a vestibulum nunc magna at sem. Sed in risus ac felis varius blandit. D"
     }
   ],
+  */
   "projects": [
     {
-      "name": "Quantum Computing",
-      "summary": "Quantum computing is the use of quantum-mechanical phenomena such as superposition and entanglement to perform computation. Computers that perform quantum computations are known as quantum computers.",
+      "name": "SpinorTracer - Ray Tracer Path Tracer engine",
+      "summary": "used mathematical physics, C++ to build a path tracer-ray tracer engine with multiple levels of optimization,
+      increasing performance rate by 750% over naive implementation. (Ray and path tracers are often used for image
+      rendering, modeling light transport in video games, and the film industry)
+      • employed state-of-the-art algorithms for fast model rendering, precision improvements in ray-sphere interactions,
+      optimized importance sampling and adaptive ray tracing for improved anti-aliasing.
+      • currently working on extending the project to real-time rendering(at GPU level) using NVIDIA’s CUDA, Vulkan
+      and other tools, exploiting greater GPU parallelization and optimizations",
       "highlights": [
-        "Quantum Teleportation",
-        "Quantum Cryptography"
+        "CUDA",
+        "ray tracing",
+        "C++",
       ],
-      "startDate": "2018-01-01",
-      "endDate": "2018-01-01",
-      "url": "https://example.com"
+      "startDate": "2023-05-26",
+      "endDate": "Present",
+      "url": " "
     }
   ]
 }
