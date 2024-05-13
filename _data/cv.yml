@@ -11,10 +11,9 @@
 - title: Education
   type: time_table
   contents:
-    - title: Bachelors of Science
+    - title: Bachelors of Science in Mathematics
       institution: University of Texas at Austin
       year: 2024
-      - title: Mathematics
       - title: Courses
           items:
             - Algebraic Geometry

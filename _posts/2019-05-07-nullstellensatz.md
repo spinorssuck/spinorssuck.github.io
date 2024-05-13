@@ -50,7 +50,7 @@ Let  $$ I' $$ be the polynomials of the ideal  $$ I $$ which don't contain the i
 
 Now, one constructs a set  $$ J $$ as follows:
 
- $$ J=\{f(a_{1},a_{2},\cdots ,a_{n-1},x_{n})|f \in I \} $$. We prove that  $$ J $$ is a proper ideal of  $$ F[x_{n}] $$. It is quite clear that  $$ J $$ is an ideal. All that remains to prove is that it doesn't contain the identity.
+ $$ J=\{f(a_{1},a_{2},\cdots ,a_{n-1},x_{n}) \vert f \in I \} $$. We prove that  $$ J $$ is a proper ideal of  $$ F[x_{n}] $$. It is quite clear that  $$ J $$ is an ideal. All that remains to prove is that it doesn't contain the identity.
 
 Assume that there exists some  $$ f \in I $$ such that  $$ f(a_{1},\cdots ,a_{n-1},x_{n})=1 $$. Writing  $$ f $$ as a polynomial in  $$ F[x_{n}] $$ with coefficients in  $$ F[x_{1},\cdots ,x_{n-1}] $$.
 
@@ -60,9 +60,7 @@ Similarly, we can write the polynomial  $$ g \in I $$ as follows:
 
  $$ g=x_{n}^{e}+g_{e-1}x_{n}^{e-1}+\cdots +g_{1}x_{n}+g_{0} $$ where all  $$ g_{i} \in F[x_{1}, \cdots ,x_{n-1}] $$. Let  $$ Res(f,g) $$ be the resultant of the two polynomials i.e the determinant of their associated Sylvester matrix. Notice that  $$ Res(f,g) \in F[x_{1},\cdots ,x_{n-1}] $$.
 
- $$ Res_{F[x_{1},\cdots ,x_{n-1}]}(f,g)=
-
-\begin{vmatrix}
+ $$ Res_{F[x_{1},\cdots ,x_{n-1}]}(f,g)= \begin{vmatrix}
 
 f_{0} & f_{1} &\cdots &f_{d} & 0 & 0 & \cdots &0 \\
 
@@ -79,12 +77,9 @@ g_{0} & g_{1} & \cdots & g_{e-1} & 1 & 0 & \cdots &0\\
 \vdots & \vdots & \ddots & \vdots & \vdots & \vdots & \vdots & \vdots \\
 
 0 & \cdots & 0 & g_{0} & g_{1} & \cdots & g_{e-1} & 1 \\
+\end{vmatrix} $$.
 
-\end{vmatrix}
-
- $$.
-
-There are  $$ d  $$ rows of the  $$ f_{i}'s $$ and  $$ e $$ rows of the  $$ g_{i}'s $$.
+There are  $$ d $$ rows of the  $$ f_{i}'s $$ and  $$ e $$ rows of the  $$ g_{i}'s $$.
 
 I'll leave it to the reader to the verify that  $$ Res(f,g) \in I' $$( you can use the Leibinz's rule).
 
