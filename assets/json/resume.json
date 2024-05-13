@@ -146,12 +146,10 @@
     {
       "language": "Hindi",
       "fluency": "Fluent"
-      "icon":""
     },
     {
       "language": "English",
       "fluency": "Fluent"
-      "icon":""
     }
   ],
   "interests": [
@@ -182,15 +180,11 @@
       "name": "SpinorTracer - Ray Tracer Path Tracer engine",
       "summary": "used mathematical physics, C++ to build a path tracer-ray tracer engine with multiple levels of optimization,
       increasing performance rate by 750% over naive implementation. (Ray and path tracers are often used for image
-      rendering, modeling light transport in video games, and the film industry)
-      • employed state-of-the-art algorithms for fast model rendering, precision improvements in ray-sphere interactions,
-      optimized importance sampling and adaptive ray tracing for improved anti-aliasing.
-      • currently working on extending the project to real-time rendering(at GPU level) using NVIDIA’s CUDA, Vulkan
-      and other tools, exploiting greater GPU parallelization and optimizations",
+      rendering, modeling light transport in video games, and the film industry)",
       "highlights": [
         "CUDA",
-        "ray tracing",
-        "C++",
+        "Ray tracing",
+        "C++"
       ],
       "startDate": "2023-05-26",
       "endDate": "Present",
