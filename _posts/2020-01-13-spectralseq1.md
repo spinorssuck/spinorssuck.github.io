@@ -7,7 +7,7 @@ tags: algebra algebraic-geometry category-theory
 categories: math
 giscus_comments: false
 related_posts: true
-featured: true
+featured: false
 toc:
     sidebar: left
 ---
