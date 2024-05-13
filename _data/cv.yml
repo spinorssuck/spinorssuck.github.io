@@ -16,13 +16,14 @@
       year: 2024
       description:
         - Besides math, I also took a lot of physics and CS class while working on CS side-projects.
-    - title: Courses
+    - title: Selected Courses
       items:
         - Algebraic Geometry
         - Lie Groups
         - Algebraic Topology
         - Graduate Quantum Mechanics
-        - Algorithsm and Complexity(Graduate)
+        - Algorithms and Complexity(Graduate)
+        - Software Design and Implementation II
         
         
 
@@ -44,6 +45,15 @@
     - title: SpinorTracer
       year: 2023-now
       description: Ray-tracer, path-tracer engine built on C++ using CUDA.
+    - title: SpinorEmulator
+      year: 2023-now
+      description: Cross-platoform Gameboy emulator on Rust
+    - title: Topological Insulators
+      year: 2022
+      description: Using Neural networks to compute certain topological invariants in insulators on Python
+    - title: Chat App
+      year: 2020
+      description: Created a real-time chat app conforming to Rest API architecture using Node.js, Express.js to build back-end server-side logic and maintained databases using PostgreSQL.
 
 - title: Awards
   type: time_table
